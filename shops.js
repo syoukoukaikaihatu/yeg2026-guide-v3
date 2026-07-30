@@ -1,28 +1,10 @@
-/*
-============================================================
- YEG祭2026 出店者情報
- 今後の店名・提供品目・アルコール・写真名はこのファイルだけ編集
-============================================================
-
-【GitHubでの修正方法】
-1. shops.js を開く
-2. 右上の鉛筆マークを押す
-3. ダブルクォーテーション " " の内側だけ修正
-4. Commit changes を押す
-
-【注意】
-・idの数字、{ }、カンマは消さないでください。
-・写真だけ変更するときは同じ画像ファイル名で上書きしてください。
-・imageを空欄にすると写真を表示しません。
-============================================================
-*/
-
+/* YEG祭2026 出店者情報：管理画面から書き出したファイル */
 window.SHOPS = [
   // 1番
   {
     id: 1,
-    name: "アイドルブース",
-    description: "物販ブースブッパン",
+    name: "Airy＊Crew",
+    description: "CDやグッズ販売",
     alcohol: "無し",
     image: "exhibitor-01.webp"
   },
@@ -31,7 +13,7 @@ window.SHOPS = [
   {
     id: 2,
     name: "ゆきいもゆりちゃんカフェ",
-    description: "冷やしキュウリヒ",
+    description: "冷やしキュウリ",
     alcohol: "無し",
     image: "exhibitor-02.png"
   },
@@ -58,7 +40,7 @@ window.SHOPS = [
   {
     id: 5,
     name: "和香",
-    description: "焼きそば、大人のかき氷オトナゴオリ",
+    description: "焼きそば、大人のかき氷",
     alcohol: "有り",
     image: "exhibitor-05.webp"
   },
@@ -121,7 +103,7 @@ window.SHOPS = [
   {
     id: 12,
     name: "いつめしplus",
-    description: "・ホットドッグ ・フランクフルト フライドポテト ・ドリンク かき氷 ・冷やしパイン",
+    description: "・ホットドッグ ・フランクフルト フライドポテト \nドリンク かき氷 ・冷やしパイン",
     alcohol: "無し",
     image: "exhibitor-12.webp"
   },
@@ -130,7 +112,7 @@ window.SHOPS = [
   {
     id: 13,
     name: "しぇるぶーる",
-    description: "タコライス等、タコス、ポテトフライ、 揚げ物、いちご削り",
+    description: "タコライス等、タコス、ポテトフライ、 揚げ物、\nいちご削り",
     alcohol: "有り",
     image: "exhibitor-13.webp"
   },
@@ -166,7 +148,7 @@ window.SHOPS = [
   {
     id: 17,
     name: "ガキゲンキッチンカー",
-    description: "肉巻きおにぎり、チキンステーキ、 イカ串、牛カルビ串、かき氷",
+    description: "肉巻きおにぎり、チキンステーキ、 イカ串、\n牛カルビ串、かき氷",
     alcohol: "有り",
     image: "exhibitor-17.webp"
   },
@@ -175,7 +157,7 @@ window.SHOPS = [
   {
     id: 18,
     name: "まんまるキッチン",
-    description: "そば飯、明石焼き、フルーツジュース、 各種ドリンク、",
+    description: "そば飯、明石焼き、フルーツジュース、 \n各種ドリンク、",
     alcohol: "有り",
     image: "exhibitor-18.webp"
   },
@@ -202,7 +184,7 @@ window.SHOPS = [
   {
     id: 21,
     name: "crepe shop sunny's",
-    description: "クレープ・アメリカンポテト ソフトドリンク・かき氷・アルコール 肉巻きおにぎり",
+    description: "クレープ・アメリカンポテト ソフトドリンク・\nかき氷・アルコール 肉巻きおにぎり",
     alcohol: "有り",
     image: "exhibitor-21.webp"
   },
@@ -212,7 +194,7 @@ window.SHOPS = [
     id: 22,
     name: "旅するKitchen car岳",
     description: "串焼き、スムージー、焼きそば、フライドポテト、唐揚げ",
-    alcohol: "有りア",
+    alcohol: "",
     image: "exhibitor-22.png"
   },
 
@@ -228,10 +210,9 @@ window.SHOPS = [
   // 24番
   {
     id: 24,
-    name: "植物ショクブツ",
-    description: "",
+    name: "さくらた・GRAAL RAW・GREEN PEACE",
+    description: "植物の販売等",
     alcohol: "無し",
     image: "exhibitor-24.webp"
   }
-
 ];
