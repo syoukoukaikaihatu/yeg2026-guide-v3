@@ -1,0 +1,21 @@
+YEG祭2026 最終公開版 Ver.2.4 画像表示修正版
+
+■ 不具合の原因
+現在使用中のshops.jsで、WebP化前の旧ファイル名が一部残っていました。
+・⑮：exhibitor-15.png
+・⑰：exhibitor-17.jpg
+GitHub上にある実画像はexhibitor-15.webp／exhibitor-17.webpのため、読み込みに失敗していました。
+
+■ 修正内容
+・①～㉔の画像参照をすべてexhibitor-XX.webpに統一
+・③、⑤、⑫、⑯は全体表示（contain）
+・その他は全面表示（cover）
+・読み込みエラー時に画像を即座に非表示にする処理を削除
+・一時的な読み込み失敗時は最大2回まで自動再読み込み
+・画像URLに?v=24を追加して旧キャッシュを回避
+・全24枚のWebP画像について存在・正常性を確認
+・index.htmlとshops.jsのJavaScript構文を確認
+
+■ GitHubへの反映
+ZIPを解凍し、フォルダ内の全ファイルをGitHubへ上書きしてください。
+index.htmlとshops.jsは必ず両方とも更新してください。
