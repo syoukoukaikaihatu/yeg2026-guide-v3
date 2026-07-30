@@ -115,20 +115,12 @@
 </style>
 
 
-<style id="ver21-image-fit-css">
-.shop-preview-frame{
-  width:100%;aspect-ratio:16/9;background:#f5f5f5;border:1px solid #d8dee8;
-  border-radius:9px;overflow:hidden;display:grid;place-items:center;
-}
+<style id="ver22-image-fit-css">
+.shop-preview-frame{width:100%;aspect-ratio:16/9;background:#f5f5f5;border:1px solid #d8dee8;border-radius:9px;overflow:hidden;display:grid;place-items:center}
 .shop-preview-frame img{width:100%;height:100%;display:block;background:#f5f5f5}
-.shop-preview-frame.fit-cover img{object-fit:cover}
-.shop-preview-frame.fit-contain img{object-fit:contain}
-.shop-preview-frame.fit-logo img{object-fit:contain;padding:7%;box-sizing:border-box}
-.shop-preview-frame.fit-auto img{object-fit:contain}
-.ex-card .fit-cover,.shop-card .fit-cover{object-fit:cover!important}
-.ex-card .fit-contain,.shop-card .fit-contain{object-fit:contain!important;background:#f5f5f5!important}
-.ex-card .fit-logo,.shop-card .fit-logo{object-fit:contain!important;background:#f5f5f5!important;padding:7%;box-sizing:border-box}
-.ex-card .fit-auto,.shop-card .fit-auto{object-fit:contain!important;background:#f5f5f5!important}
+.fit-cover{object-fit:cover!important}
+.fit-contain{object-fit:contain!important;background:#f5f5f5!important;padding:0!important}
+.fit-auto{object-fit:contain!important;background:#f5f5f5!important}
 </style>
 
 </head>
@@ -222,7 +214,6 @@ TIMETABLE: 70.64%, 44.83% / サイズ 82%
         <option value="auto">自動判定</option>
         <option value="cover">全面表示（端が切れる場合あり）</option>
         <option value="contain">全体表示（画像を切らない）</option>
-        <option value="logo">ロゴ表示（中央に大きく表示）</option>
       </select>
       <label for="shopImageFile">新しい写真</label><input accept="image/*" id="shopImageFile" type="file"/>
       <label>プレビュー</label>
@@ -260,7 +251,7 @@ TIMETABLE: 70.64%, 44.83% / サイズ 82%
 time＝時刻、title＝内容、note＝補足です。
 文字だけを書き換え、記号「"」「:」「,」は削除しないでください。
 ========================================================= -->
-<script id="timetable-data" type="application/json">[{"time":"15:20","title":"ステージイベント開始","note":"YEG紹介"},{"time":"15:30","title":"ダンスショーケース","note":"ぜひ、ステージ前までお越しください。"},{"time":"17:10","title":"宗和會演武・踊り披露","note":"ぜひ、ステージ前までお越しください。"},{"time":"18:00","title":"エクストリームビンゴ大会","note":"配布しておりますビンゴカードをお持ちください。"},{"time":"20:00","title":"閉会","note":""}]</script>
+<script id="timetable-data" type="application/json">[{"time":"","title":"ステージイベント開始","note":"YEG紹介"},{"time":"15:20","title":"ダンスショーケース","note":"ぜひ、ステージ前までお越しください。"},{"time":"17:10","title":"宗和會演武・踊り披露","note":"ぜひ、ステージ前までお越しください。"},{"time":"18:00","title":"エクストリームビンゴ大会","note":"配布しておりますビンゴカードをお持ちください。"},{"time":"20:00","title":"閉会","note":""}]</script>
 <!-- ===== 編集③ タイムテーブル ここまで ===== -->
 <script src="shops.js"></script><script>(function(){
 'use strict';
@@ -290,7 +281,7 @@ ready(function(){
       if(e.image){
         photo.onerror=()=>{photo.hidden=true;};
         photo.onload=()=>{photo.hidden=false;};
-        photo.src=e.image;photo.alt=`${e.name}の写真`;
+        photo.src=e.image;photo.alt=`${e.name}の写真`;photo.className='ex-photo fit-'+(e.imageFit||'auto');
       }
       else{photo.removeAttribute('src');photo.alt='';photo.hidden=true;}
     }
@@ -471,9 +462,10 @@ ready(function(){
       grid.innerHTML=exhibitors.map(e=>`<button class="ex-item" type="button" data-id="${e.id}" aria-label="${esc(e.name)}の詳細を表示"><span class="num">${e.id}</span>${esc(e.name)}</button>`).join('');
     }
     if(all&&exhibitors.length){
-      all.innerHTML=exhibitors.map(e=>`<article class="all-card">${e.image?`<img class="all-photo" src="${esc(e.image)}" alt="${esc(e.name)}の写真" loading="lazy" onerror="this.hidden=true">`:''}<h4><span class="num">${e.id}</span>${esc(e.name)}</h4><div class="card-detail"><div class="card-detail-row"><span class="card-detail-label">提供品目</span><span class="card-detail-value">${esc(e.description||'未定')}</span></div><div class="card-detail-row alcohol-line"><span class="card-detail-label">アルコール</span><span class="card-detail-value">${esc(e.alcohol||'未定')}</span></div></div></article>`).join('');
+      all.innerHTML=exhibitors.map(e=>`<article class="all-card">${e.image?`<img class="all-photo fit-${esc(e.imageFit||'auto')}" src="${esc(e.image)}" alt="${esc(e.name)}の写真" loading="lazy" onerror="this.hidden=true">`:''}<h4><span class="num">${e.id}</span>${esc(e.name)}</h4><div class="card-detail"><div class="card-detail-row"><span class="card-detail-label">提供品目</span><span class="card-detail-value">${esc(e.description||'未定')}</span></div><div class="card-detail-row alcohol-line"><span class="card-detail-label">アルコール</span><span class="card-detail-value">${esc(e.alcohol||'未定')}</span></div></div></article>`).join('');
     }
     $$('.ex-item').forEach(b=>b.addEventListener('click',()=>showEx(b.dataset.id)));
+    applyAutoImageFit(all||document);
   }
 
   function renderTT(){
@@ -706,18 +698,19 @@ ready(function(){
 })();
 </script>
 
-<script id="ver21-auto-fit-runtime">
-document.addEventListener('DOMContentLoaded',()=>{
-  document.querySelectorAll('img.fit-auto').forEach(img=>{
+<script id="ver22-auto-fit-runtime">
+function applyAutoImageFit(root=document){
+  root.querySelectorAll('img.fit-auto').forEach(img=>{
     const decide=()=>{
       if(!img.naturalWidth||!img.naturalHeight)return;
-      const r=img.naturalWidth/img.naturalHeight;
-      img.style.objectFit=(r>=1.45&&r<=2.15)?'cover':'contain';
+      const ratio=img.naturalWidth/img.naturalHeight;
+      img.style.objectFit=(ratio>=1.45&&ratio<=2.15)?'cover':'contain';
       img.style.background='#f5f5f5';
     };
-    if(img.complete)decide(); else img.addEventListener('load',decide,{once:true});
+    if(img.complete)decide();else img.addEventListener('load',decide,{once:true});
   });
-});
+}
+document.addEventListener('DOMContentLoaded',()=>applyAutoImageFit());
 </script>
 
 </body></html>
