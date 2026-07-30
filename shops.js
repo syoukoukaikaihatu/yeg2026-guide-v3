@@ -7,7 +7,7 @@ window.SHOPS = [
     description: "CDやグッズ販売",
     alcohol: "無し",
     image: "exhibitor-01.webp",
-    imageFit: "cover"
+    imageFit: "contain"
   },
 
   // 2番
@@ -17,7 +17,7 @@ window.SHOPS = [
     description: "冷やしキュウリ",
     alcohol: "無し",
     image: "exhibitor-02.webp",
-    imageFit: "cover"
+    imageFit: "contain"
   },
 
   // 3番
@@ -37,7 +37,7 @@ window.SHOPS = [
     description: "未定",
     alcohol: "有り",
     image: "exhibitor-04.webp",
-    imageFit: "cover"
+    imageFit: "contain"
   },
 
   // 5番
@@ -57,7 +57,7 @@ window.SHOPS = [
     description: "焼き鳥",
     alcohol: "有り",
     image: "exhibitor-06.webp",
-    imageFit: "cover"
+    imageFit: "contain"
   },
 
   // 7番
@@ -67,7 +67,7 @@ window.SHOPS = [
     description: "かき氷、イチゴ飴、光るドリンクボトル",
     alcohol: "有り",
     image: "exhibitor-07.webp",
-    imageFit: "cover"
+    imageFit: "contain"
   },
 
   // 8番
@@ -77,7 +77,7 @@ window.SHOPS = [
     description: "かき氷、チョコバナナ",
     alcohol: "有り",
     image: "exhibitor-08.webp",
-    imageFit: "cover"
+    imageFit: "contain"
   },
 
   // 9番
@@ -87,7 +87,7 @@ window.SHOPS = [
     description: "きゅうりの一本漬け",
     alcohol: "有り",
     image: "exhibitor-09.webp",
-    imageFit: "cover"
+    imageFit: "contain"
   },
 
   // 10番
@@ -97,7 +97,7 @@ window.SHOPS = [
     description: "りんご飴、ラムネ、水、ドリンク",
     alcohol: "無し",
     image: "exhibitor-10.webp",
-    imageFit: "cover"
+    imageFit: "contain"
   },
 
   // 11番
@@ -107,7 +107,7 @@ window.SHOPS = [
     description: "ジェラート、ドリンク",
     alcohol: "有り",
     image: "exhibitor-11.webp",
-    imageFit: "cover"
+    imageFit: "contain"
   },
 
   // 12番
@@ -127,7 +127,7 @@ window.SHOPS = [
     description: "タコライス等、タコス、ポテトフライ、 揚げ物、いちご削り",
     alcohol: "有り",
     image: "exhibitor-13.webp",
-    imageFit: "cover"
+    imageFit: "contain"
   },
 
   // 14番
@@ -137,7 +137,7 @@ window.SHOPS = [
     description: "韓国料理、ソーセージチーズかけ ドリンク",
     alcohol: "有り",
     image: "exhibitor-14.webp",
-    imageFit: "cover"
+    imageFit: "contain"
   },
 
   // 15番
@@ -147,7 +147,7 @@ window.SHOPS = [
     description: "そば粉のガレット、ドリンク",
     alcohol: "無し",
     image: "exhibitor-15.webp",
-    imageFit: "cover"
+    imageFit: "contain"
   },
 
   // 16番
@@ -167,7 +167,7 @@ window.SHOPS = [
     description: "肉巻きおにぎり、チキンステーキ、 イカ串、牛カルビ串、かき氷",
     alcohol: "有り",
     image: "exhibitor-17.webp",
-    imageFit: "cover"
+    imageFit: "contain"
   },
 
   // 18番
@@ -177,7 +177,7 @@ window.SHOPS = [
     description: "そば飯、明石焼き、フルーツジュース、 各種ドリンク、",
     alcohol: "有り",
     image: "exhibitor-18.webp",
-    imageFit: "cover"
+    imageFit: "contain"
   },
 
   // 19番
@@ -187,7 +187,7 @@ window.SHOPS = [
     description: "くまさんのカステラ、かき氷",
     alcohol: "無し",
     image: "exhibitor-19.webp",
-    imageFit: "cover"
+    imageFit: "contain"
   },
 
   // 20番
@@ -197,7 +197,7 @@ window.SHOPS = [
     description: "ケバブ",
     alcohol: "無し",
     image: "exhibitor-20.webp",
-    imageFit: "cover"
+    imageFit: "contain"
   },
 
   // 21番
@@ -207,7 +207,7 @@ window.SHOPS = [
     description: "クレープ・アメリカンポテト ソフトドリンク・\nかき氷・アルコール 肉巻きおにぎり",
     alcohol: "有り",
     image: "exhibitor-21.webp",
-    imageFit: "cover"
+    imageFit: "contain"
   },
 
   // 22番
@@ -217,7 +217,7 @@ window.SHOPS = [
     description: "串焼き、スムージー、焼きそば、\nフライドポテト、唐揚げ",
     alcohol: "有り",
     image: "exhibitor-22.webp",
-    imageFit: "cover"
+    imageFit: "contain"
   },
 
   // 23番
@@ -227,7 +227,7 @@ window.SHOPS = [
     description: "串焼き、焼きそば、フライドポテト、ドリンク",
     alcohol: "有り",
     image: "exhibitor-23.webp",
-    imageFit: "cover"
+    imageFit: "contain"
   },
 
   // 24番
@@ -237,6 +237,6 @@ window.SHOPS = [
     description: "塊根植物やビザールプランツの展示・販売",
     alcohol: "無し",
     image: "exhibitor-24.webp",
-    imageFit: "cover"
+    imageFit: "contain"
   }
 ];
