@@ -5,7 +5,7 @@
 ============================================================
 
 【GitHubでの修正方法】
-1. exhibitors.js を開く
+1. shops.js を開く
 2. 右上の鉛筆マークを押す
 3. ダブルクォーテーション " " の内側だけ修正
 4. Commit changes を押す
@@ -24,7 +24,7 @@ window.SHOPS = [
     name: "アイドルブース",
     description: "物販ブースブッパン",
     alcohol: "無し",
-    image: "exhibitor-01.png"
+    image: "exhibitor-01.webp"
   },
 
   // 2番
@@ -42,7 +42,7 @@ window.SHOPS = [
     name: "個別教育Can",
     description: "フランクフルト",
     alcohol: "無し",
-    image: "exhibitor-03.png"
+    image: "exhibitor-03.webp"
   },
 
   // 4番
@@ -51,7 +51,7 @@ window.SHOPS = [
     name: "YEGブース",
     description: "",
     alcohol: "有り",
-    image: "exhibitor-04.jpg"
+    image: "exhibitor-04.webp"
   },
 
   // 5番
@@ -60,7 +60,7 @@ window.SHOPS = [
     name: "和香",
     description: "焼きそば、大人のかき氷オトナゴオリ",
     alcohol: "有り",
-    image: "exhibitor-05.png"
+    image: "exhibitor-05.webp"
   },
 
   // 6番
@@ -69,7 +69,7 @@ window.SHOPS = [
     name: "居酒屋祇園",
     description: "焼き鳥",
     alcohol: "有り",
-    image: "exhibitor-06.png"
+    image: "exhibitor-06.webp"
   },
 
   // 7番
@@ -78,7 +78,7 @@ window.SHOPS = [
     name: "T’sキッチン",
     description: "かき氷、イチゴ飴、光るドリンクボトル",
     alcohol: "有り",
-    image: "exhibitor-07.png"
+    image: "exhibitor-07.webp"
   },
 
   // 8番
@@ -87,7 +87,7 @@ window.SHOPS = [
     name: "飛騨九兵衛",
     description: "かき氷、チョコバナナ",
     alcohol: "有り",
-    image: "exhibitor-08.jpg"
+    image: "exhibitor-08.webp"
   },
 
   // 9番
@@ -96,7 +96,7 @@ window.SHOPS = [
     name: "カラオケ酒場 じゅん婆",
     description: "きゅうりの一本漬け",
     alcohol: "有り",
-    image: "exhibitor-09.jpg"
+    image: "exhibitor-09.webp"
   },
 
   // 10番
@@ -105,7 +105,7 @@ window.SHOPS = [
     name: "ぱりぱりんご",
     description: "りんご飴、ラムネ、水、ドリンク",
     alcohol: "無し",
-    image: "exhibitor-10.jpg"
+    image: "exhibitor-10.webp"
   },
 
   // 11番
@@ -114,7 +114,7 @@ window.SHOPS = [
     name: "Ninotti",
     description: "ジェラート、ドリンク",
     alcohol: "有り",
-    image: "exhibitor-11.jpg"
+    image: "exhibitor-11.webp"
   },
 
   // 12番
@@ -123,7 +123,7 @@ window.SHOPS = [
     name: "いつめしplus",
     description: "・ホットドッグ ・フランクフルト フライドポテト ・ドリンク かき氷 ・冷やしパイン",
     alcohol: "無し",
-    image: "exhibitor-12.png"
+    image: "exhibitor-12.webp"
   },
 
   // 13番
@@ -132,7 +132,7 @@ window.SHOPS = [
     name: "しぇるぶーる",
     description: "タコライス等、タコス、ポテトフライ、 揚げ物、いちご削り",
     alcohol: "有り",
-    image: "exhibitor-13.png"
+    image: "exhibitor-13.webp"
   },
 
   // 14番
@@ -141,7 +141,7 @@ window.SHOPS = [
     name: "Koke Kokio",
     description: "韓国料理、ソーセージチーズかけ ドリンク",
     alcohol: "有り",
-    image: "exhibitor-14.png"
+    image: "exhibitor-14.webp"
   },
 
   // 15番
@@ -159,7 +159,7 @@ window.SHOPS = [
     name: "HOUEI COFFEE",
     description: "コーヒー飲料",
     alcohol: "無し",
-    image: "exhibitor-16.jpg"
+    image: "exhibitor-16.webp"
   },
 
   // 17番
@@ -168,7 +168,7 @@ window.SHOPS = [
     name: "ガキゲンキッチンカー",
     description: "肉巻きおにぎり、チキンステーキ、 イカ串、牛カルビ串、かき氷",
     alcohol: "有り",
-    image: "exhibitor-17.png"
+    image: "exhibitor-17.webp"
   },
 
   // 18番
@@ -177,7 +177,7 @@ window.SHOPS = [
     name: "まんまるキッチン",
     description: "そば飯、明石焼き、フルーツジュース、 各種ドリンク、",
     alcohol: "有り",
-    image: "exhibitor-18.png"
+    image: "exhibitor-18.webp"
   },
 
   // 19番
@@ -186,7 +186,7 @@ window.SHOPS = [
     name: "くまさんのカステラ",
     description: "くまさんのカステラ、かき氷",
     alcohol: "無し",
-    image: "exhibitor-19.png"
+    image: "exhibitor-19.webp"
   },
 
   // 20番
@@ -195,7 +195,7 @@ window.SHOPS = [
     name: "ゴールドキッチン",
     description: "ケバブ",
     alcohol: "無し",
-    image: "exhibitor-20.png"
+    image: "exhibitor-20.webp"
   },
 
   // 21番
@@ -204,7 +204,7 @@ window.SHOPS = [
     name: "crepe shop sunny's",
     description: "クレープ・アメリカンポテト ソフトドリンク・かき氷・アルコール 肉巻きおにぎり",
     alcohol: "有り",
-    image: "exhibitor-21.png"
+    image: "exhibitor-21.webp"
   },
 
   // 22番
@@ -231,7 +231,7 @@ window.SHOPS = [
     name: "植物ショクブツ",
     description: "",
     alcohol: "無し",
-    image: "exhibitor-24.png"
+    image: "exhibitor-24.webp"
   }
 
 ];
