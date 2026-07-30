@@ -114,6 +114,23 @@
 }
 </style>
 
+
+<style id="ver21-image-fit-css">
+.shop-preview-frame{
+  width:100%;aspect-ratio:16/9;background:#f5f5f5;border:1px solid #d8dee8;
+  border-radius:9px;overflow:hidden;display:grid;place-items:center;
+}
+.shop-preview-frame img{width:100%;height:100%;display:block;background:#f5f5f5}
+.shop-preview-frame.fit-cover img{object-fit:cover}
+.shop-preview-frame.fit-contain img{object-fit:contain}
+.shop-preview-frame.fit-logo img{object-fit:contain;padding:7%;box-sizing:border-box}
+.shop-preview-frame.fit-auto img{object-fit:contain}
+.ex-card .fit-cover,.shop-card .fit-cover{object-fit:cover!important}
+.ex-card .fit-contain,.shop-card .fit-contain{object-fit:contain!important;background:#f5f5f5!important}
+.ex-card .fit-logo,.shop-card .fit-logo{object-fit:contain!important;background:#f5f5f5!important;padding:7%;box-sizing:border-box}
+.ex-card .fit-auto,.shop-card .fit-auto{object-fit:contain!important;background:#f5f5f5!important}
+</style>
+
 </head>
 <body class="">
 <header class="hero" id="top"><h1><span>YEG</span>祭2026 会場案内</h1><p>会場マップ・出店者一覧・ステージイベントを確認できます。</p></header>
@@ -200,8 +217,18 @@ TIMETABLE: 70.64%, 44.83% / サイズ 82%
       <label for="shopDescription">提供品目</label><textarea id="shopDescription"></textarea>
       <label for="shopAlcohol">アルコール</label><select id="shopAlcohol"><option value="無し">無し</option><option value="有り">有り</option><option value="未定">未定</option><option value="">空欄</option></select>
       <label for="shopImageName">画像ファイル名</label><input id="shopImageName" placeholder="exhibitor-01.webp" type="text"/>
+      <label for="shopImageFit">画像の表示方法</label>
+      <select id="shopImageFit">
+        <option value="auto">自動判定</option>
+        <option value="cover">全面表示（端が切れる場合あり）</option>
+        <option value="contain">全体表示（画像を切らない）</option>
+        <option value="logo">ロゴ表示（中央に大きく表示）</option>
+      </select>
       <label for="shopImageFile">新しい写真</label><input accept="image/*" id="shopImageFile" type="file"/>
-      <label>プレビュー</label><img alt="写真プレビュー" class="shop-editor-preview" id="shopImagePreview"/>
+      <label>プレビュー</label>
+      <div class="shop-preview-frame" id="shopPreviewFrame">
+        <img alt="写真プレビュー" class="shop-editor-preview" id="shopImagePreview"/>
+      </div>
     </div>
     <div class="batch-current-actions">
       <button class="shop-apply" id="applyShopEdit" type="button">この店舗の変更を反映</button>
@@ -479,33 +506,50 @@ ready(function(){
       name:$('#shopName')?.value.trim()||'',
       description:$('#shopDescription')?.value.trim()||'',
       alcohol:$('#shopAlcohol')?.value||'',
-      image:$('#shopImageName')?.value.trim()||''
+      image:$('#shopImageName')?.value.trim()||'',
+      imageFit:$('#shopImageFit')?.value||'auto'
     };
   }
   function formDiffers(e){
     if(!e)return false;const v=snapshotForm();
-    return v.name!==(e.name||'')||v.description!==(e.description||'')||v.alcohol!==(e.alcohol||'')||v.image!==(e.image||'');
+    return v.name!==(e.name||'')||v.description!==(e.description||'')||v.alcohol!==(e.alcohol||'')||v.image!==(e.image||'')||v.imageFit!==(e.imageFit||'auto');
   }
   function commitCurrent(silent=true){
     const e=exhibitors.find(x=>String(x.id)===String(loadedShopId));
     if(!e)return false;
     const v=snapshotForm();
-    const changed=v.name!==(e.name||'')||v.description!==(e.description||'')||v.alcohol!==(e.alcohol||'')||v.image!==(e.image||'');
+    const changed=v.name!==(e.name||'')||v.description!==(e.description||'')||v.alcohol!==(e.alcohol||'')||v.image!==(e.image||'')||v.imageFit!==(e.imageFit||'auto');
     if(changed){
-      e.name=v.name;e.description=v.description;e.alcohol=v.alcohol;e.image=v.image;
+      e.name=v.name;e.description=v.description;e.alcohol=v.alcohol;e.image=v.image;e.imageFit=v.imageFit;
       changedShopIds.add(Number(e.id));renderEx();
     }
     renderBatchList();updateChangedSummary();
     if(!silent)$('#shopEditStatus').textContent=changed?'この店舗の変更を反映しました。':'入力内容に変更はありません。';
     return changed;
   }
+  function resolvedFit(e){
+    const fit=e?.imageFit||'auto';
+    if(fit!=='auto')return fit;
+    return 'contain';
+  }
+  function applyPreviewFit(fit){
+    const frame=$('#shopPreviewFrame');if(!frame)return;
+    frame.className='shop-preview-frame fit-'+(fit||'auto');
+  }
+  function previewAndApplyFit(){
+    const e=currentShop();if(!e)return;
+    const fit=$('#shopImageFit')?.value||'auto';
+    e.imageFit=fit;changedShopIds.add(Number(e.id));
+    applyPreviewFit(fit);renderEx();renderBatchList();updateChangedSummary();
+    $('#shopEditStatus').textContent='画像の表示方法を画面へ反映しました。';
+  }
   function fillShopEditor(){
     const e=currentShop();if(!e)return;
     loadedShopId=Number(e.id);
-    $('#shopName').value=e.name||'';$('#shopDescription').value=e.description||'';$('#shopAlcohol').value=e.alcohol||'';$('#shopImageName').value=e.image||'';
+    $('#shopName').value=e.name||'';$('#shopDescription').value=e.description||'';$('#shopAlcohol').value=e.alcohol||'';$('#shopImageName').value=e.image||'';$('#shopImageFit').value=e.imageFit||'auto';
     const pending=pendingShopImages.get(Number(e.id));
     const preview=$('#shopImagePreview');
-    preview.src=pending?.url||e.image||'';preview.hidden=!(pending?.url||e.image);
+    preview.src=pending?.url||e.image||'';preview.hidden=!(pending?.url||e.image);applyPreviewFit(e.imageFit||'auto');
     $('#shopImageFile').value='';
     $('#currentShopLabel').textContent=`${e.id}　${e.name||'名称未設定'}`;
     renderBatchList();
@@ -580,6 +624,7 @@ ready(function(){
       $('#shopEditStatus').textContent='新しい写真を保持しました。最後に一括ZIP保存できます。';
     }catch(err){console.error(err);$('#shopEditStatus').textContent='写真の処理に失敗しました。別の画像でお試しください。';}
   });
+  $('#shopImageFit')?.addEventListener('change',previewAndApplyFit);
   $('#applyShopEdit')?.addEventListener('click',()=>commitCurrent(false));
 
   function shopJsSource(){
@@ -591,7 +636,8 @@ ready(function(){
         `    name: ${JSON.stringify(e.name||'')},`,
         `    description: ${JSON.stringify(e.description||'')},`,
         `    alcohol: ${JSON.stringify(e.alcohol||'')},`,
-        `    image: ${JSON.stringify(e.image||'')}`,
+        `    image: ${JSON.stringify(e.image||'')},`,
+        `    imageFit: ${JSON.stringify(e.imageFit||'auto')}`,
         `  }${i<exhibitors.length-1?',':''}`
       ].join('\n');
     }).join('\n\n');
@@ -659,4 +705,19 @@ ready(function(){
 });
 })();
 </script>
+
+<script id="ver21-auto-fit-runtime">
+document.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('img.fit-auto').forEach(img=>{
+    const decide=()=>{
+      if(!img.naturalWidth||!img.naturalHeight)return;
+      const r=img.naturalWidth/img.naturalHeight;
+      img.style.objectFit=(r>=1.45&&r<=2.15)?'cover':'contain';
+      img.style.background='#f5f5f5';
+    };
+    if(img.complete)decide(); else img.addEventListener('load',decide,{once:true});
+  });
+});
+</script>
+
 </body></html>

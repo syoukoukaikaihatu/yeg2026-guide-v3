@@ -1,21 +1,41 @@
-/* YEG祭2026 出店者情報：管理画面から書き出したファイル */
+/*
+============================================================
+ YEG祭2026 出店者情報
+ 今後の店名・提供品目・アルコール・写真名はこのファイルだけ編集
+============================================================
+
+【GitHubでの修正方法】
+1. shops.js を開く
+2. 右上の鉛筆マークを押す
+3. ダブルクォーテーション " " の内側だけ修正
+4. Commit changes を押す
+
+【注意】
+・idの数字、{ }、カンマは消さないでください。
+・写真だけ変更するときは同じ画像ファイル名で上書きしてください。
+・imageを空欄にすると写真を表示しません。
+============================================================
+*/
+
 window.SHOPS = [
   // 1番
   {
     id: 1,
-    name: "Airy＊Crew",
-    description: "CDやグッズ販売",
+    name: "アイドルブース",
+    description: "物販ブースブッパン",
     alcohol: "無し",
-    image: "exhibitor-01.webp"
+    image: "exhibitor-01.webp",
+    imageFit: "auto"
   },
 
   // 2番
   {
     id: 2,
     name: "ゆきいもゆりちゃんカフェ",
-    description: "冷やしキュウリ",
+    description: "冷やしキュウリヒ",
     alcohol: "無し",
-    image: "exhibitor-02.png"
+    image: "exhibitor-02.png",
+    imageFit: "auto"
   },
 
   // 3番
@@ -24,7 +44,8 @@ window.SHOPS = [
     name: "個別教育Can",
     description: "フランクフルト",
     alcohol: "無し",
-    image: "exhibitor-03.webp"
+    image: "exhibitor-03.webp",
+    imageFit: "contain"
   },
 
   // 4番
@@ -33,16 +54,18 @@ window.SHOPS = [
     name: "YEGブース",
     description: "",
     alcohol: "有り",
-    image: "exhibitor-04.webp"
+    image: "exhibitor-04.webp",
+    imageFit: "auto"
   },
 
   // 5番
   {
     id: 5,
     name: "和香",
-    description: "焼きそば、大人のかき氷",
+    description: "焼きそば、大人のかき氷オトナゴオリ",
     alcohol: "有り",
-    image: "exhibitor-05.webp"
+    image: "exhibitor-05.webp",
+    imageFit: "logo"
   },
 
   // 6番
@@ -51,7 +74,8 @@ window.SHOPS = [
     name: "居酒屋祇園",
     description: "焼き鳥",
     alcohol: "有り",
-    image: "exhibitor-06.webp"
+    image: "exhibitor-06.webp",
+    imageFit: "auto"
   },
 
   // 7番
@@ -60,7 +84,8 @@ window.SHOPS = [
     name: "T’sキッチン",
     description: "かき氷、イチゴ飴、光るドリンクボトル",
     alcohol: "有り",
-    image: "exhibitor-07.webp"
+    image: "exhibitor-07.webp",
+    imageFit: "auto"
   },
 
   // 8番
@@ -69,7 +94,8 @@ window.SHOPS = [
     name: "飛騨九兵衛",
     description: "かき氷、チョコバナナ",
     alcohol: "有り",
-    image: "exhibitor-08.webp"
+    image: "exhibitor-08.webp",
+    imageFit: "auto"
   },
 
   // 9番
@@ -78,7 +104,8 @@ window.SHOPS = [
     name: "カラオケ酒場 じゅん婆",
     description: "きゅうりの一本漬け",
     alcohol: "有り",
-    image: "exhibitor-09.webp"
+    image: "exhibitor-09.webp",
+    imageFit: "auto"
   },
 
   // 10番
@@ -87,7 +114,8 @@ window.SHOPS = [
     name: "ぱりぱりんご",
     description: "りんご飴、ラムネ、水、ドリンク",
     alcohol: "無し",
-    image: "exhibitor-10.webp"
+    image: "exhibitor-10.webp",
+    imageFit: "auto"
   },
 
   // 11番
@@ -96,25 +124,28 @@ window.SHOPS = [
     name: "Ninotti",
     description: "ジェラート、ドリンク",
     alcohol: "有り",
-    image: "exhibitor-11.webp"
+    image: "exhibitor-11.webp",
+    imageFit: "auto"
   },
 
   // 12番
   {
     id: 12,
     name: "いつめしplus",
-    description: "・ホットドッグ ・フランクフルト フライドポテト \nドリンク かき氷 ・冷やしパイン",
+    description: "・ホットドッグ ・フランクフルト フライドポテト ・ドリンク かき氷 ・冷やしパイン",
     alcohol: "無し",
-    image: "exhibitor-12.webp"
+    image: "exhibitor-12.webp",
+    imageFit: "contain"
   },
 
   // 13番
   {
     id: 13,
     name: "しぇるぶーる",
-    description: "タコライス等、タコス、ポテトフライ、 揚げ物、\nいちご削り",
+    description: "タコライス等、タコス、ポテトフライ、 揚げ物、いちご削り",
     alcohol: "有り",
-    image: "exhibitor-13.webp"
+    image: "exhibitor-13.webp",
+    imageFit: "auto"
   },
 
   // 14番
@@ -123,7 +154,8 @@ window.SHOPS = [
     name: "Koke Kokio",
     description: "韓国料理、ソーセージチーズかけ ドリンク",
     alcohol: "有り",
-    image: "exhibitor-14.webp"
+    image: "exhibitor-14.webp",
+    imageFit: "auto"
   },
 
   // 15番
@@ -132,7 +164,8 @@ window.SHOPS = [
     name: "SMOKO",
     description: "そば粉のガレット、ドリンク",
     alcohol: "無し",
-    image: "exhibitor-15.png"
+    image: "exhibitor-15.png",
+    imageFit: "auto"
   },
 
   // 16番
@@ -141,25 +174,28 @@ window.SHOPS = [
     name: "HOUEI COFFEE",
     description: "コーヒー飲料",
     alcohol: "無し",
-    image: "exhibitor-16.webp"
+    image: "exhibitor-16.webp",
+    imageFit: "logo"
   },
 
   // 17番
   {
     id: 17,
     name: "ガキゲンキッチンカー",
-    description: "肉巻きおにぎり、チキンステーキ、 イカ串、\n牛カルビ串、かき氷",
+    description: "肉巻きおにぎり、チキンステーキ、 イカ串、牛カルビ串、かき氷",
     alcohol: "有り",
-    image: "exhibitor-17.webp"
+    image: "exhibitor-17.webp",
+    imageFit: "auto"
   },
 
   // 18番
   {
     id: 18,
     name: "まんまるキッチン",
-    description: "そば飯、明石焼き、フルーツジュース、 \n各種ドリンク、",
+    description: "そば飯、明石焼き、フルーツジュース、 各種ドリンク、",
     alcohol: "有り",
-    image: "exhibitor-18.webp"
+    image: "exhibitor-18.webp",
+    imageFit: "auto"
   },
 
   // 19番
@@ -168,7 +204,8 @@ window.SHOPS = [
     name: "くまさんのカステラ",
     description: "くまさんのカステラ、かき氷",
     alcohol: "無し",
-    image: "exhibitor-19.webp"
+    image: "exhibitor-19.webp",
+    imageFit: "auto"
   },
 
   // 20番
@@ -177,16 +214,18 @@ window.SHOPS = [
     name: "ゴールドキッチン",
     description: "ケバブ",
     alcohol: "無し",
-    image: "exhibitor-20.webp"
+    image: "exhibitor-20.webp",
+    imageFit: "auto"
   },
 
   // 21番
   {
     id: 21,
     name: "crepe shop sunny's",
-    description: "クレープ・アメリカンポテト ソフトドリンク・\nかき氷・アルコール 肉巻きおにぎり",
+    description: "クレープ・アメリカンポテト ソフトドリンク・かき氷・アルコール 肉巻きおにぎり",
     alcohol: "有り",
-    image: "exhibitor-21.webp"
+    image: "exhibitor-21.webp",
+    imageFit: "auto"
   },
 
   // 22番
@@ -194,8 +233,9 @@ window.SHOPS = [
     id: 22,
     name: "旅するKitchen car岳",
     description: "串焼き、スムージー、焼きそば、フライドポテト、唐揚げ",
-    alcohol: "",
-    image: "exhibitor-22.png"
+    alcohol: "有りア",
+    image: "exhibitor-22.png",
+    imageFit: "auto"
   },
 
   // 23番
@@ -204,15 +244,18 @@ window.SHOPS = [
     name: "uis_kitchen",
     description: "串焼き、焼きそば、フライドポテト、ドリンク",
     alcohol: "有り",
-    image: "exhibitor-23.png"
+    image: "exhibitor-23.png",
+    imageFit: "auto"
   },
 
   // 24番
   {
     id: 24,
-    name: "さくらた・GRAAL RAW・GREEN PEACE",
-    description: "植物の販売等",
+    name: "植物ショクブツ",
+    description: "",
     alcohol: "無し",
-    image: "exhibitor-24.webp"
+    image: "exhibitor-24.webp",
+    imageFit: "auto"
   }
+
 ];
