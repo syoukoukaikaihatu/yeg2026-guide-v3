@@ -67,7 +67,36 @@
 @media(max-width:620px){.shop-editor-grid{grid-template-columns:1fr}.shop-editor-grid label{margin-top:4px}}
 </style>
 
-<style id="ver11-image-background-fix">
+
+
+
+<style id="ver12-batch-editor-css">
+.batch-editor-layout{display:grid;grid-template-columns:minmax(180px,230px) 1fr;gap:16px;align-items:start}
+.batch-shop-list-panel{border:1px solid #d8e0eb;border-radius:10px;background:#f7f9fc;overflow:hidden}
+.batch-list-title{font-weight:700;padding:10px 12px;background:#e9f0fa;color:#052b66}
+.batch-shop-list{max-height:430px;overflow:auto;padding:6px}
+.batch-shop-item{display:flex;width:100%;gap:8px;align-items:center;border:0;background:transparent;text-align:left;padding:8px;border-radius:7px;cursor:pointer;font-size:13px}
+.batch-shop-item:hover,.batch-shop-item.active{background:#dfeafb}
+.batch-shop-item.changed::after{content:"変更";margin-left:auto;background:#d10d17;color:#fff;border-radius:999px;padding:2px 6px;font-size:10px}
+.batch-shop-item .shop-no{display:inline-grid;place-items:center;min-width:26px;height:26px;border-radius:50%;background:#052b66;color:#fff;font-weight:700}
+.batch-nav{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}
+.batch-nav button,.batch-current-actions button{border:0;border-radius:8px;padding:9px 12px;cursor:pointer}
+.batch-nav button{background:#edf2f8;color:#052b66}
+.batch-current-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.batch-summary{margin-top:14px;padding:10px 12px;background:#fff7dd;border:1px solid #f0d98d;border-radius:8px}
+.batch-final-actions{border-top:1px solid #dde3ec;padding-top:14px;margin-top:14px}
+.shop-download.secondary{background:#5d6b7e}
+@media(max-width:720px){
+ .batch-editor-layout{grid-template-columns:1fr}
+ .batch-shop-list-panel{max-height:170px}
+ .batch-shop-list{max-height:125px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+ .batch-shop-item{font-size:12px}
+ .batch-nav strong{font-size:13px}
+}
+</style>
+
+
+<style id="ver20-image-display">
 .ex-img,
 .shop-image,
 .card-image,
@@ -75,6 +104,13 @@
 .ex-card img,
 .shop-card img {
   background: #f5f5f5 !important;
+  background-image: none !important;
+}
+.ex-card img,
+.shop-card img,
+.exhibitor-image {
+  object-fit: cover;
+  object-position: center;
 }
 </style>
 
@@ -139,24 +175,46 @@ TIMETABLE: 70.64%, 44.83% / サイズ 82%
 <div class="overlay" id="exModal"><div class="dialog"><button class="close" type="button">×</button><h3 id="exTitle">1　古民家ダイニング和香</h3><img alt="" class="ex-photo" hidden="" id="exPhoto"/><div class="ex-details"><div class="detail-row"><span class="detail-label">提供品目</span><p class="detail-value" id="exDesc">焼きそば</p></div><div class="detail-row"><span class="detail-label">アルコール</span><span class="detail-value alcohol-value" id="exAlcohol"></span></div></div><button class="primary" id="toList" type="button">一覧で見る　›</button></div></div>
 <div class="overlay" id="ttModal"><div class="dialog wide"><button class="close" type="button">×</button><h3 style="color:#d10d17">🎤 ステージイベント タイムテーブル</h3><table><tbody id="ttModalBody"><tr><td>15:20</td><td>ステージイベント開始</td><td>YEG紹介</td></tr><tr><td>15:30</td><td>ダンスショーケース</td><td>ぜひ、ステージ前までお越しください。</td></tr><tr><td>17:10</td><td>宗和會演武・踊り披露</td><td>ぜひ、ステージ前までお越しください。</td></tr><tr><td>18:00</td><td>エクストリームビンゴ大会</td><td>配布しておりますビンゴカードをお持ちください。</td></tr><tr><td>20:00</td><td>閉会</td><td></td></tr></tbody></table></div></div>
 <div class="overlay" id="allModal"><div class="dialog wide"><button class="close" type="button">×</button><h3 style="color:#052b66">🏪 出店者一覧</h3><div class="all-grid" id="allGrid"><article class="all-card"><img alt="アイドルブースの写真" class="all-photo" loading="lazy" onerror="this.hidden=true" src="exhibitor-01.webp"/><h4><span class="num">1</span>アイドルブース</h4><div class="card-detail"><div class="card-detail-row"><span class="card-detail-label">提供品目</span><span class="card-detail-value">物販ブース</span></div><div class="card-detail-row alcohol-line"><span class="card-detail-label">アルコール</span><span class="card-detail-value">無し</span></div></div></article><article class="all-card"><img alt="ゆきいもゆりちゃんカフェの写真" class="all-photo" loading="lazy" onerror="this.hidden=true" src="exhibitor-02.png"/><h4><span class="num">2</span>ゆきいもゆりちゃんカフェ</h4><div class="card-detail"><div class="card-detail-row"><span class="card-detail-label">提供品目</span><span class="card-detail-value">冷やしキュウリ</span></div><div class="card-detail-row alcohol-line"><span class="card-detail-label">アルコール</span><span class="card-detail-value">無し</span></div></div></article><article class="all-card"><img alt="個別教育Canの写真" class="all-photo" loading="lazy" onerror="this.hidden=true" src="exhibitor-03.webp"/><h4><span class="num">3</span>個別教育Can</h4><div class="card-detail"><div class="card-detail-row"><span class="card-detail-label">提供品目</span><span class="card-detail-value">フランクフルト</span></div><div class="card-detail-row alcohol-line"><span class="card-detail-label">アルコール</span><span class="card-detail-value">無し</span></div></div></article><article class="all-card"><img alt="YEGブースの写真" class="all-photo" loading="lazy" onerror="this.hidden=true" src="exhibitor-04.webp"/><h4><span class="num">4</span>YEGブース</h4><div class="card-detail"><div class="card-detail-row"><span class="card-detail-label">提供品目</span><span class="card-detail-value">未定</span></div><div class="card-detail-row alcohol-line"><span class="card-detail-label">アルコール</span><span class="card-detail-value">有り</span></div></div></article><article class="all-card"><img alt="和香の写真" class="all-photo" loading="lazy" onerror="this.hidden=true" src="exhibitor-05.webp"/><h4><span class="num">5</span>和香</h4><div class="card-detail"><div class="card-detail-row"><span class="card-detail-label">提供品目</span><span class="card-detail-value">焼きそば</span></div><div class="card-detail-row alcohol-line"><span class="card-detail-label">アルコール</span><span class="card-detail-value">有り</span></div></div></article><article class="all-card"><img alt="まさきさん枠の写真" class="all-photo" loading="lazy" onerror="this.hidden=true" src="exhibitor-06.webp"/><h4><span class="num">6</span>まさきさん枠</h4><div class="card-detail"><div class="card-detail-row"><span class="card-detail-label">提供品目</span><span class="card-detail-value">未定</span></div><div class="card-detail-row alcohol-line"><span class="card-detail-label">アルコール</span><span class="card-detail-value">未定</span></div></div></article><article class="all-card"><img alt="T’sキッチンの写真" class="all-photo" loading="lazy" onerror="this.hidden=true" src="exhibitor-07.webp"/><h4><span class="num">7</span>T’sキッチン</h4><div class="card-detail"><div class="card-detail-row"><span class="card-detail-label">提供品目</span><span class="card-detail-value">かき氷、イチゴ飴、光るドリンクボトル</span></div><div class="card-detail-row alcohol-line"><span class="card-detail-label">アルコール</span><span class="card-detail-value">有り</span></div></div></article><article class="all-card"><img alt="飛騨九兵衛の写真" class="all-photo" loading="lazy" onerror="this.hidden=true" src="exhibitor-08.png"/><h4><span class="num">8</span>飛騨九兵衛</h4><div class="card-detail"><div class="card-detail-row"><span class="card-detail-label">提供品目</span><span class="card-detail-value">かき氷、チョコバナナ</span></div><div class="card-detail-row alcohol-line"><span class="card-detail-label">アルコール</span><span class="card-detail-value">有り</span></div></div></article><article class="all-card"><img alt="カラオケ酒場 じゅん婆の写真" class="all-photo" loading="lazy" onerror="this.hidden=true" src="exhibitor-09.webp"/><h4><span class="num">9</span>カラオケ酒場 じゅん婆</h4><div class="card-detail"><div class="card-detail-row"><span class="card-detail-label">提供品目</span><span class="card-detail-value">きゅうりの一本漬け</span></div><div class="card-detail-row alcohol-line"><span class="card-detail-label">アルコール</span><span class="card-detail-value">有り</span></div></div></article><article class="all-card"><img alt="ぱりぱりんごの写真" class="all-photo" loading="lazy" onerror="this.hidden=true" src="exhibitor-10.webp"/><h4><span class="num">10</span>ぱりぱりんご</h4><div class="card-detail"><div class="card-detail-row"><span class="card-detail-label">提供品目</span><span class="card-detail-value">りんご飴、ラムネ、水、ドリンク</span></div><div class="card-detail-row alcohol-line"><span class="card-detail-label">アルコール</span><span class="card-detail-value">無し</span></div></div></article><article class="all-card"><img alt="Ninottiの写真" class="all-photo" loading="lazy" onerror="this.hidden=true" src="exhibitor-11.webp"/><h4><span class="num">11</span>Ninotti</h4><div class="card-detail"><div class="card-detail-row"><span class="card-detail-label">提供品目</span><span class="card-detail-value">ジェラート、ドリンク</span></div><div class="card-detail-row alcohol-line"><span class="card-detail-label">アルコール</span><span class="card-detail-value">有り</span></div></div></article><article class="all-card"><img alt="いつめしplusの写真" class="all-photo" loading="lazy" onerror="this.hidden=true" src="exhibitor-12.webp"/><h4><span class="num">12</span>いつめしplus</h4><div class="card-detail"><div class="card-detail-row"><span class="card-detail-label">提供品目</span><span class="card-detail-value">・ホットドッグ ・フランクフルト フライドポテト ・ドリンク かき氷 ・冷やしパイン</span></div><div class="card-detail-row alcohol-line"><span class="card-detail-label">アルコール</span><span class="card-detail-value">無し</span></div></div></article><article class="all-card"><img alt="しぇるぶーるの写真" class="all-photo" loading="lazy" onerror="this.hidden=true" src="exhibitor-13.jpg"/><h4><span class="num">13</span>しぇるぶーる</h4><div class="card-detail"><div class="card-detail-row"><span class="card-detail-label">提供品目</span><span class="card-detail-value">タコライス等、タコス、ポテトフライ、 揚げ物、いちご削り</span></div><div class="card-detail-row alcohol-line"><span class="card-detail-label">アルコール</span><span class="card-detail-value">有り</span></div></div></article><article class="all-card"><img alt="Koke Kokioの写真" class="all-photo" loading="lazy" onerror="this.hidden=true" src="exhibitor-14.webp"/><h4><span class="num">14</span>Koke Kokio</h4><div class="card-detail"><div class="card-detail-row"><span class="card-detail-label">提供品目</span><span class="card-detail-value">韓国料理、ソーセージチーズかけ ドリンク</span></div><div class="card-detail-row alcohol-line"><span class="card-detail-label">アルコール</span><span class="card-detail-value">有り</span></div></div></article><article class="all-card"><img alt="SMOKOの写真" class="all-photo" loading="lazy" onerror="this.hidden=true" src="exhibitor-15.png"/><h4><span class="num">15</span>SMOKO</h4><div class="card-detail"><div class="card-detail-row"><span class="card-detail-label">提供品目</span><span class="card-detail-value">そば粉のガレット、ドリンク</span></div><div class="card-detail-row alcohol-line"><span class="card-detail-label">アルコール</span><span class="card-detail-value">無し</span></div></div></article><article class="all-card"><img alt="HOUEI COFFEEの写真" class="all-photo" loading="lazy" onerror="this.hidden=true" src="exhibitor-16.webp"/><h4><span class="num">16</span>HOUEI COFFEE</h4><div class="card-detail"><div class="card-detail-row"><span class="card-detail-label">提供品目</span><span class="card-detail-value">コーヒー飲料</span></div><div class="card-detail-row alcohol-line"><span class="card-detail-label">アルコール</span><span class="card-detail-value">無し</span></div></div></article><article class="all-card"><img alt="ガキゲンキッチンカーの写真" class="all-photo" loading="lazy" onerror="this.hidden=true" src="exhibitor-17.jpg"/><h4><span class="num">17</span>ガキゲンキッチンカー</h4><div class="card-detail"><div class="card-detail-row"><span class="card-detail-label">提供品目</span><span class="card-detail-value">肉巻きおにぎり、チキンステーキ、 イカ串、牛カルビ串、かき氷</span></div><div class="card-detail-row alcohol-line"><span class="card-detail-label">アルコール</span><span class="card-detail-value">有り</span></div></div></article><article class="all-card"><img alt="まんまるキッチンの写真" class="all-photo" loading="lazy" onerror="this.hidden=true" src="exhibitor-18.webp"/><h4><span class="num">18</span>まんまるキッチン</h4><div class="card-detail"><div class="card-detail-row"><span class="card-detail-label">提供品目</span><span class="card-detail-value">そば飯、明石焼き、フルーツジュース、 各種ドリンク、</span></div><div class="card-detail-row alcohol-line"><span class="card-detail-label">アルコール</span><span class="card-detail-value">有り</span></div></div></article><article class="all-card"><img alt="くまさんのカステラの写真" class="all-photo" loading="lazy" onerror="this.hidden=true" src="exhibitor-19.webp"/><h4><span class="num">19</span>くまさんのカステラ</h4><div class="card-detail"><div class="card-detail-row"><span class="card-detail-label">提供品目</span><span class="card-detail-value">くまさんのカステラ、かき氷</span></div><div class="card-detail-row alcohol-line"><span class="card-detail-label">アルコール</span><span class="card-detail-value">無し</span></div></div></article><article class="all-card"><img alt="ゴールドキッチンの写真" class="all-photo" loading="lazy" onerror="this.hidden=true" src="exhibitor-20.webp"/><h4><span class="num">20</span>ゴールドキッチン</h4><div class="card-detail"><div class="card-detail-row"><span class="card-detail-label">提供品目</span><span class="card-detail-value">ケバブ</span></div><div class="card-detail-row alcohol-line"><span class="card-detail-label">アルコール</span><span class="card-detail-value">無し</span></div></div></article><article class="all-card"><img alt="crepe shop sunny'sの写真" class="all-photo" loading="lazy" onerror="this.hidden=true" src="exhibitor-21.webp"/><h4><span class="num">21</span>crepe shop sunny's</h4><div class="card-detail"><div class="card-detail-row"><span class="card-detail-label">提供品目</span><span class="card-detail-value">クレープ・アメリカンポテト ソフトドリンク・かき氷・アルコール 肉巻きおにぎり</span></div><div class="card-detail-row alcohol-line"><span class="card-detail-label">アルコール</span><span class="card-detail-value">有り</span></div></div></article><article class="all-card"><img alt="旅するKitchen car岳の写真" class="all-photo" loading="lazy" onerror="this.hidden=true" src="exhibitor-22.png"/><h4><span class="num">22</span>旅するKitchen car岳</h4><div class="card-detail"><div class="card-detail-row"><span class="card-detail-label">提供品目</span><span class="card-detail-value">串焼き、スムージー、焼きそば、フライドポテト、唐揚げ</span></div><div class="card-detail-row alcohol-line"><span class="card-detail-label">アルコール</span><span class="card-detail-value">有り</span></div></div></article><article class="all-card"><img alt="uis_kitchenの写真" class="all-photo" loading="lazy" onerror="this.hidden=true" src="exhibitor-23.png"/><h4><span class="num">23</span>uis_kitchen</h4><div class="card-detail"><div class="card-detail-row"><span class="card-detail-label">提供品目</span><span class="card-detail-value">串焼き、焼きそば、フライドポテト、ドリンク</span></div><div class="card-detail-row alcohol-line"><span class="card-detail-label">アルコール</span><span class="card-detail-value">有り</span></div></div></article><article class="all-card"><img alt="植物の写真" class="all-photo" loading="lazy" onerror="this.hidden=true" src="exhibitor-24.webp"/><h4><span class="num">24</span>植物</h4><div class="card-detail"><div class="card-detail-row"><span class="card-detail-label">提供品目</span><span class="card-detail-value">未定</span></div><div class="card-detail-row alcohol-line"><span class="card-detail-label">アルコール</span><span class="card-detail-value">無し</span></div></div></article></div></div></div>
-<div aria-label="出店者情報編集" aria-modal="true" class="overlay" id="shopEditorModal" role="dialog">
-<div class="dialog wide shop-editor-dialog">
+<div aria-label="出店者情報一括編集" aria-modal="true" class="overlay" id="shopEditorModal" role="dialog">
+<div class="dialog wide shop-editor-dialog batch-shop-editor">
 <button aria-label="閉じる" class="close" id="closeShopEditor" type="button">×</button>
-<h3 style="color:#052b66;margin-top:0">🏪 出店者情報編集</h3>
-<div class="shop-help">番号を選び、文字を修正して「画面に反映」を押してください。公開用には「shops.jsを保存」を押し、ダウンロードしたファイルをGitHubの同名ファイルへ上書きします。写真を選んだ場合は「写真を16:9で保存」も押し、画像ファイルもGitHubへ上書きしてください。</div>
-<div class="shop-editor-grid">
-<label for="shopSelect">出店番号</label><select id="shopSelect"></select>
-<label for="shopName">店舗名</label><input id="shopName" type="text"/>
-<label for="shopDescription">提供品目</label><textarea id="shopDescription"></textarea>
-<label for="shopAlcohol">アルコール</label><select id="shopAlcohol"><option value="無し">無し</option><option value="有り">有り</option><option value="未定">未定</option><option value="">空欄</option></select>
-<label for="shopImageName">画像ファイル名</label><input id="shopImageName" placeholder="exhibitor-01.webp" type="text"/>
-<label for="shopImageFile">新しい写真</label><input accept="image/*" id="shopImageFile" type="file"/>
-<label>プレビュー</label><img alt="写真プレビュー" class="shop-editor-preview" id="shopImagePreview"/>
+<h3 style="color:#052b66;margin-top:0">🏪 出店者情報 一括編集</h3>
+<div class="shop-help">
+複数店舗を続けて編集できます。店舗を切り替えると入力内容は自動的に保持されます。
+すべての編集後に「更新ファイルを一括ZIP保存」を押すと、<b>shops.jsと変更した写真</b>を1つのZIPで保存できます。
 </div>
-<div class="shop-editor-actions">
-<button class="shop-apply" id="applyShopEdit" type="button">画面に反映</button>
-<button class="shop-download" id="downloadShopsJs" type="button">shops.jsを保存</button>
-<button class="shop-photo-download" id="downloadShopPhoto" type="button">写真を16:9で保存</button>
+<div class="batch-editor-layout">
+  <aside class="batch-shop-list-panel">
+    <div class="batch-list-title">出店者一覧</div>
+    <div id="batchShopList" class="batch-shop-list"></div>
+  </aside>
+  <section class="batch-editor-main">
+    <div class="batch-nav">
+      <button id="prevShop" type="button">← 前の店舗</button>
+      <strong id="currentShopLabel"></strong>
+      <button id="nextShop" type="button">次の店舗 →</button>
+    </div>
+    <div class="shop-editor-grid">
+      <label for="shopSelect">出店番号</label><select id="shopSelect"></select>
+      <label for="shopName">店舗名</label><input id="shopName" type="text"/>
+      <label for="shopDescription">提供品目</label><textarea id="shopDescription"></textarea>
+      <label for="shopAlcohol">アルコール</label><select id="shopAlcohol"><option value="無し">無し</option><option value="有り">有り</option><option value="未定">未定</option><option value="">空欄</option></select>
+      <label for="shopImageName">画像ファイル名</label><input id="shopImageName" placeholder="exhibitor-01.webp" type="text"/>
+      <label for="shopImageFile">新しい写真</label><input accept="image/*" id="shopImageFile" type="file"/>
+      <label>プレビュー</label><img alt="写真プレビュー" class="shop-editor-preview" id="shopImagePreview"/>
+    </div>
+    <div class="batch-current-actions">
+      <button class="shop-apply" id="applyShopEdit" type="button">この店舗の変更を反映</button>
+      <button class="shop-photo-download" id="downloadShopPhoto" type="button">現在の写真だけ保存</button>
+    </div>
+  </section>
+</div>
+<div class="batch-summary">
+  <strong>変更した店舗：</strong><span id="changedShopSummary">なし</span>
+</div>
+<div class="shop-editor-actions batch-final-actions">
+<button class="shop-download" id="downloadUpdateZip" type="button">更新ファイルを一括ZIP保存</button>
+<button class="shop-download secondary" id="downloadShopsJs" type="button">shops.jsのみ保存</button>
 <button class="shop-cancel" id="cancelShopEdit" type="button">閉じる</button>
 </div>
 <div aria-live="polite" class="shop-status" id="shopEditStatus"></div>
@@ -408,64 +466,191 @@ ready(function(){
   document.addEventListener('keydown',e=>{if(e.key==='Escape')$$('.overlay.open').forEach(close);});
 
 
-  // ===== 管理画面：出店者情報編集 =====
-  let pendingShopImageFile=null;
-  let pendingShopImageUrl='';
+  // ===== 管理画面：出店者情報一括編集 =====
   const shopEditorModal=$('#shopEditorModal');
   const shopSelect=$('#shopSelect');
+  const changedShopIds=new Set();
+  const pendingShopImages=new Map(); // id => {file,url,blob,name}
+  let loadedShopId=null;
+
   function currentShop(){return exhibitors.find(e=>String(e.id)===String(shopSelect?.value));}
+  function snapshotForm(){
+    return {
+      name:$('#shopName')?.value.trim()||'',
+      description:$('#shopDescription')?.value.trim()||'',
+      alcohol:$('#shopAlcohol')?.value||'',
+      image:$('#shopImageName')?.value.trim()||''
+    };
+  }
+  function formDiffers(e){
+    if(!e)return false;const v=snapshotForm();
+    return v.name!==(e.name||'')||v.description!==(e.description||'')||v.alcohol!==(e.alcohol||'')||v.image!==(e.image||'');
+  }
+  function commitCurrent(silent=true){
+    const e=exhibitors.find(x=>String(x.id)===String(loadedShopId));
+    if(!e)return false;
+    const v=snapshotForm();
+    const changed=v.name!==(e.name||'')||v.description!==(e.description||'')||v.alcohol!==(e.alcohol||'')||v.image!==(e.image||'');
+    if(changed){
+      e.name=v.name;e.description=v.description;e.alcohol=v.alcohol;e.image=v.image;
+      changedShopIds.add(Number(e.id));renderEx();
+    }
+    renderBatchList();updateChangedSummary();
+    if(!silent)$('#shopEditStatus').textContent=changed?'この店舗の変更を反映しました。':'入力内容に変更はありません。';
+    return changed;
+  }
   function fillShopEditor(){
     const e=currentShop();if(!e)return;
+    loadedShopId=Number(e.id);
     $('#shopName').value=e.name||'';$('#shopDescription').value=e.description||'';$('#shopAlcohol').value=e.alcohol||'';$('#shopImageName').value=e.image||'';
-    pendingShopImageFile=null;
-    if(pendingShopImageUrl){URL.revokeObjectURL(pendingShopImageUrl);pendingShopImageUrl='';}
-    const preview=$('#shopImagePreview');preview.src=e.image||'';preview.hidden=!e.image;
-    $('#shopImageFile').value='';$('#shopEditStatus').textContent='';
+    const pending=pendingShopImages.get(Number(e.id));
+    const preview=$('#shopImagePreview');
+    preview.src=pending?.url||e.image||'';preview.hidden=!(pending?.url||e.image);
+    $('#shopImageFile').value='';
+    $('#currentShopLabel').textContent=`${e.id}　${e.name||'名称未設定'}`;
+    renderBatchList();
   }
   function buildShopSelect(){
     if(!shopSelect)return;
     shopSelect.innerHTML=exhibitors.map(e=>`<option value="${e.id}">${e.id}　${esc(e.name)}</option>`).join('');
   }
-  function openShopEditor(){buildShopSelect();fillShopEditor();open(shopEditorModal);}
-  $('#openShopEditor')?.addEventListener('click',openShopEditor);
-  shopSelect?.addEventListener('change',fillShopEditor);
-  $('#closeShopEditor')?.addEventListener('click',()=>close(shopEditorModal));
-  $('#cancelShopEdit')?.addEventListener('click',()=>close(shopEditorModal));
-  $('#shopImageFile')?.addEventListener('change',ev=>{
-    pendingShopImageFile=ev.target.files?.[0]||null;if(!pendingShopImageFile)return;
-    if(pendingShopImageUrl)URL.revokeObjectURL(pendingShopImageUrl);
-    pendingShopImageUrl=URL.createObjectURL(pendingShopImageFile);
-    const e=currentShop(),ext=(pendingShopImageFile.type.split('/')[1]||'png').replace('jpeg','jpg');
-    $('#shopImageName').value=`exhibitor-${String(e.id).padStart(2,'0')}.webp`;
-    const preview=$('#shopImagePreview');preview.src=pendingShopImageUrl;preview.hidden=false;
-    $('#shopEditStatus').textContent='新しい写真を選択しました。画面反映後、写真も保存してください。';
-  });
-  $('#applyShopEdit')?.addEventListener('click',()=>{
-    const e=currentShop();if(!e)return;
-    e.name=$('#shopName').value.trim();e.description=$('#shopDescription').value.trim();e.alcohol=$('#shopAlcohol').value;e.image=$('#shopImageName').value.trim();
-    renderEx();buildShopSelect();shopSelect.value=String(e.id);fillShopEditor();
-    $('#shopEditStatus').textContent='画面に反映しました。公開するにはshops.jsを保存してください。';
-  });
-  function shopJsSource(){
-    const rows=exhibitors.map((e,i)=>`  // ${e.id}番\n  {\n    id: ${Number(e.id)},\n    name: ${JSON.stringify(e.name||'')},\n    description: ${JSON.stringify(e.description||'')},\n    alcohol: ${JSON.stringify(e.alcohol||'')},\n    image: ${JSON.stringify(e.image||'')}\n  }${i<exhibitors.length-1?',':''}`).join('\n\n');
-    return `/* YEG祭2026 出店者情報：管理画面から書き出したファイル */\nwindow.SHOPS = [\n${rows}\n];\n`;
+  function renderBatchList(){
+    const box=$('#batchShopList');if(!box)return;
+    const active=String(shopSelect?.value||'');
+    box.innerHTML=exhibitors.map(e=>`<button type="button" class="batch-shop-item ${String(e.id)===active?'active':''} ${changedShopIds.has(Number(e.id))||pendingShopImages.has(Number(e.id))?'changed':''}" data-shop-id="${e.id}"><span class="shop-no">${e.id}</span><span>${esc(e.name||'名称未設定')}</span></button>`).join('');
+    box.querySelectorAll('[data-shop-id]').forEach(b=>b.addEventListener('click',()=>switchShop(b.dataset.shopId)));
   }
-  function downloadBlob(blob,name){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1200);}
+  function updateChangedSummary(){
+    const ids=[...new Set([...changedShopIds,...pendingShopImages.keys()])].sort((a,b)=>a-b);
+    $('#changedShopSummary').textContent=ids.length?ids.map(n=>`${n}番`).join('、'):'なし';
+  }
+  function switchShop(id){
+    commitCurrent(true);
+    shopSelect.value=String(id);fillShopEditor();
+    $('#shopEditStatus').textContent='';
+  }
+  function openShopEditor(){
+    buildShopSelect();shopSelect.value=String(exhibitors[0]?.id||'');fillShopEditor();updateChangedSummary();open(shopEditorModal);
+  }
+  $('#openShopEditor')?.addEventListener('click',openShopEditor);
+  shopSelect?.addEventListener('change',ev=>switchShop(ev.target.value));
+  $('#prevShop')?.addEventListener('click',()=>{
+    const i=exhibitors.findIndex(e=>String(e.id)===String(shopSelect.value));
+    if(i>0)switchShop(exhibitors[i-1].id);
+  });
+  $('#nextShop')?.addEventListener('click',()=>{
+    const i=exhibitors.findIndex(e=>String(e.id)===String(shopSelect.value));
+    if(i>=0&&i<exhibitors.length-1)switchShop(exhibitors[i+1].id);
+  });
+  function closeBatchEditor(){
+    commitCurrent(true);close(shopEditorModal);
+  }
+  $('#closeShopEditor')?.addEventListener('click',closeBatchEditor);
+  $('#cancelShopEdit')?.addEventListener('click',closeBatchEditor);
+
+  async function makeWebpBlob(file){
+    const url=URL.createObjectURL(file);
+    try{
+      const img=await new Promise((resolve,reject)=>{const i=new Image();i.onload=()=>resolve(i);i.onerror=reject;i.src=url;});
+      const W=1200,H=675,canvas=document.createElement('canvas');canvas.width=W;canvas.height=H;
+      const ctx=canvas.getContext('2d');ctx.fillStyle='#f5f5f5';ctx.fillRect(0,0,W,H);
+      const ratio=img.width/img.height,target=W/H;
+      if(ratio<1.25||ratio>2.35){
+        const scale=Math.min(W/img.width,H/img.height),dw=img.width*scale,dh=img.height*scale;
+        ctx.drawImage(img,(W-dw)/2,(H-dh)/2,dw,dh);
+      }else{
+        const scale=Math.max(W/img.width,H/img.height),sw=W/scale,sh=H/scale,sx=(img.width-sw)/2,sy=(img.height-sh)/2;
+        ctx.drawImage(img,sx,sy,sw,sh,0,0,W,H);
+      }
+      return await new Promise(resolve=>canvas.toBlob(resolve,'image/webp',0.80));
+    }finally{URL.revokeObjectURL(url);}
+  }
+  $('#shopImageFile')?.addEventListener('change',async ev=>{
+    const file=ev.target.files?.[0]||null;if(!file)return;
+    const e=currentShop();if(!e)return;
+    $('#shopEditStatus').textContent='写真を軽量化しています…';
+    try{
+      const blob=await makeWebpBlob(file);
+      const old=pendingShopImages.get(Number(e.id));if(old?.url)URL.revokeObjectURL(old.url);
+      const url=URL.createObjectURL(blob),name=`exhibitor-${String(e.id).padStart(2,'0')}.webp`;
+      pendingShopImages.set(Number(e.id),{file,blob,url,name});
+      $('#shopImageName').value=name;
+      const preview=$('#shopImagePreview');preview.src=url;preview.hidden=false;
+      changedShopIds.add(Number(e.id));commitCurrent(true);updateChangedSummary();
+      $('#shopEditStatus').textContent='新しい写真を保持しました。最後に一括ZIP保存できます。';
+    }catch(err){console.error(err);$('#shopEditStatus').textContent='写真の処理に失敗しました。別の画像でお試しください。';}
+  });
+  $('#applyShopEdit')?.addEventListener('click',()=>commitCurrent(false));
+
+  function shopJsSource(){
+    const rows=exhibitors.map((e,i)=>{
+      return [
+        `  // ${e.id}番`,
+        '  {',
+        `    id: ${Number(e.id)},`,
+        `    name: ${JSON.stringify(e.name||'')},`,
+        `    description: ${JSON.stringify(e.description||'')},`,
+        `    alcohol: ${JSON.stringify(e.alcohol||'')},`,
+        `    image: ${JSON.stringify(e.image||'')}`,
+        `  }${i<exhibitors.length-1?',':''}`
+      ].join('\n');
+    }).join('\n\n');
+    return [
+      '/* YEG祭2026 出店者情報：管理画面から書き出したファイル */',
+      'window.SHOPS = [',
+      rows,
+      '];',
+      ''
+    ].join('\n');
+  }
+  function downloadBlob(blob,name){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1500);}
   $('#downloadShopsJs')?.addEventListener('click',()=>{
+    commitCurrent(true);
     downloadBlob(new Blob([shopJsSource()],{type:'text/javascript;charset=utf-8'}),'shops.js');
     $('#shopEditStatus').textContent='shops.jsを保存しました。GitHubへ上書きしてください。';
   });
   $('#downloadShopPhoto')?.addEventListener('click',()=>{
-    if(!pendingShopImageFile){$('#shopEditStatus').textContent='先に「新しい写真」から画像を選択してください。';return;}
-    const img=new Image();img.onload=()=>{
-      const W=1200,H=675,canvas=document.createElement('canvas');canvas.width=W;canvas.height=H;const ctx=canvas.getContext('2d');
-      const scale=Math.max(W/img.width,H/img.height),sw=W/scale,sh=H/scale,sx=(img.width-sw)/2,sy=(img.height-sh)/2;
-      ctx.drawImage(img,sx,sy,sw,sh,0,0,W,H);
-      canvas.toBlob(blob=>{if(blob)downloadBlob(blob,$('#shopImageName').value.trim()||`exhibitor-${String(currentShop().id).padStart(2,'0')}.webp`);},'image/webp',0.80);
-      $('#shopEditStatus').textContent='16:9写真を保存しました。GitHubへ上書きしてください。';
-    };img.src=pendingShopImageUrl;
+    const e=currentShop(),p=e&&pendingShopImages.get(Number(e.id));
+    if(!p){$('#shopEditStatus').textContent='この店舗では新しい写真が選択されていません。';return;}
+    downloadBlob(p.blob,p.name);
+    $('#shopEditStatus').textContent=`${p.name}を保存しました。`;
   });
-  // ===== 出店者情報編集 ここまで =====
+
+  // 外部ライブラリ不要の簡易ZIP（無圧縮）
+  const crcTable=(()=>{const t=[];for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=(c&1)?0xedb88320^(c>>>1):c>>>1;t[n]=c>>>0;}return t;})();
+  function crc32(bytes){let c=0xffffffff;for(const b of bytes)c=crcTable[(c^b)&255]^(c>>>8);return(c^0xffffffff)>>>0;}
+  function u16(n){return new Uint8Array([n&255,(n>>>8)&255]);}
+  function u32(n){return new Uint8Array([n&255,(n>>>8)&255,(n>>>16)&255,(n>>>24)&255]);}
+  function concat(parts){const size=parts.reduce((s,p)=>s+p.length,0),out=new Uint8Array(size);let o=0;for(const p of parts){out.set(p,o);o+=p.length;}return out;}
+  async function createZip(files){
+    const enc=new TextEncoder(),locals=[],centrals=[];let offset=0;
+    for(const f of files){
+      const name=enc.encode(f.name),data=new Uint8Array(await f.blob.arrayBuffer()),crc=crc32(data);
+      const local=concat([u32(0x04034b50),u16(20),u16(0x0800),u16(0),u16(0),u16(0),u32(crc),u32(data.length),u32(data.length),u16(name.length),u16(0),name,data]);
+      locals.push(local);
+      const central=concat([u32(0x02014b50),u16(20),u16(20),u16(0x0800),u16(0),u16(0),u16(0),u32(crc),u32(data.length),u32(data.length),u16(name.length),u16(0),u16(0),u16(0),u16(0),u32(0),u32(offset),name]);
+      centrals.push(central);offset+=local.length;
+    }
+    const centralSize=centrals.reduce((s,p)=>s+p.length,0);
+    const end=concat([u32(0x06054b50),u16(0),u16(0),u16(files.length),u16(files.length),u32(centralSize),u32(offset),u16(0)]);
+    return new Blob([...locals,...centrals,end],{type:'application/zip'});
+  }
+  $('#downloadUpdateZip')?.addEventListener('click',async()=>{
+    commitCurrent(true);
+    const files=[{name:'shops.js',blob:new Blob([shopJsSource()],{type:'text/javascript;charset=utf-8'})}];
+    [...pendingShopImages.values()].sort((a,b)=>a.name.localeCompare(b.name)).forEach(p=>files.push({name:p.name,blob:p.blob}));
+    $('#shopEditStatus').textContent='更新用ZIPを作成しています…';
+    try{
+      const blob=await createZip(files);
+      downloadBlob(blob,'YEG2026_出店者情報_更新ファイル.zip');
+      const photoCount=files.length-1;
+      $('#shopEditStatus').textContent=`一括ZIPを保存しました（shops.js＋変更写真${photoCount}枚）。GitHubへ上書きしてください。`;
+    }catch(err){console.error(err);$('#shopEditStatus').textContent='ZIP作成に失敗しました。shops.jsと写真を個別保存してください。';}
+  });
+  window.addEventListener('beforeunload',e=>{
+    if(changedShopIds.size||pendingShopImages.size){e.preventDefault();e.returnValue='';}
+  });
+  // ===== 出店者情報一括編集 ここまで =====
 
   renderEx();
   renderTT();
