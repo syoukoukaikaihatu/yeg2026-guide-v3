@@ -138,32 +138,30 @@
   border-radius:8px;
 }
 </style>
-<style id="ver33-ennichi-css">
-.ennichi-list-dialog{
-  width:min(760px,94vw);max-height:92vh;overflow:auto;background:#fffaf0;
-  border:4px solid #e21a2c
+<style id="ver34-ennichi-image-css">
+.ennichi-image-dialog{
+  width:min(860px,96vw);
+  max-height:94vh;
+  overflow:auto;
+  padding:10px;
+  background:#fff;
 }
-.ennichi-content{padding:26px 20px 22px;text-align:center}
-.ennichi-content h3{margin:0;color:#d10d17;font-size:clamp(25px,5vw,38px)}
-.ennichi-free{
-  display:inline-block;margin:10px 0 18px;padding:8px 18px;border-radius:999px;
-  background:#0878bd;color:#fff;font-weight:900;font-size:clamp(15px,3vw,21px)
+.ennichi-image-dialog .ennichi-visual{
+  display:block;
+  width:100%;
+  height:auto;
+  max-height:88vh;
+  object-fit:contain;
+  border-radius:12px;
 }
-.ennichi-game-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.ennichi-game{
-  min-height:120px;padding:14px 8px;border:3px solid #f2b300;border-radius:16px;
-  background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:7px;box-shadow:0 4px 10px #0001
-}
-.ennichi-game span{font-size:42px;line-height:1}
-.ennichi-game strong{font-size:clamp(16px,2.6vw,22px);line-height:1.35;color:#052b66}
-.ennichi-caution{margin:16px 0 0;font-size:13px;font-weight:700;color:#5c3b16}
 @media(max-width:620px){
-  .ennichi-content{padding:24px 12px 18px}
-  .ennichi-game-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
-  .ennichi-game{min-height:104px;padding:10px 6px}
-  .ennichi-game:last-child{grid-column:1/-1}
-  .ennichi-game span{font-size:35px}
+  .ennichi-image-dialog{
+    width:96vw;
+    padding:6px;
+  }
+  .ennichi-image-dialog .ennichi-visual{
+    max-height:86vh;
+  }
 }
 </style></head>
 <body class="">
@@ -217,20 +215,9 @@ TIMETABLE: 70.64%, 44.83% / サイズ 82%
 <li>項目</li> を追加・削除すると、縁日の項目数も変更できます。
 ========================================================= -->
 <div aria-label="縁日コーナー" aria-modal="true" class="overlay" id="ennichiModal" role="dialog">
-<div class="dialog ennichi-dialog ennichi-list-dialog">
+<div class="dialog ennichi-dialog ennichi-image-dialog">
 <button class="close" type="button">×</button>
-<div class="ennichi-content">
-<h3>🏮 縁日コーナー</h3>
-<p class="ennichi-free">すべて無料でお楽しみいただけます！</p>
-<div class="ennichi-game-grid">
-<div class="ennichi-game"><span aria-hidden="true">⭕</span><strong>輪投げ</strong></div>
-<div class="ennichi-game"><span aria-hidden="true">🎯</span><strong>射的</strong></div>
-<div class="ennichi-game"><span aria-hidden="true">🔵</span><strong>スーパーボールすくい</strong></div>
-<div class="ennichi-game"><span aria-hidden="true">🐟</span><strong>メダカすくい</strong></div>
-<div class="ennichi-game"><span aria-hidden="true">🎈</span><strong>風船釣り</strong></div>
-</div>
-<p class="ennichi-caution">※ 景品等はなくなり次第終了となります。</p>
-</div>
+<img alt="縁日コーナー　輪投げ、射的、スーパーボールすくい、メダカすくい、風船釣り" class="ennichi-visual" loading="lazy" src="ennichi-corner.png?v=35"/>
 </div>
 </div>
 <!-- ===== 編集② 縁日コーナー ここまで ===== -->
@@ -275,8 +262,8 @@ TIMETABLE: 70.64%, 44.83% / サイズ 82%
 <label for="shopImageFile">新しい写真</label><input accept="image/*" id="shopImageFile" type="file"/>
 <label>プレビュー</label>
 <div class="shop-preview-frame" id="shopPreviewFrame">
-<img alt="写真プレビュー" class="shop-editor-preview" id="shopImagePreview">
-</img></div>
+<img alt="写真プレビュー" class="shop-editor-preview" id="shopImagePreview"/>
+</div>
 </div>
 <div class="batch-current-actions">
 <button class="shop-apply" id="applyShopEdit" type="button">この店舗の変更を反映</button>
