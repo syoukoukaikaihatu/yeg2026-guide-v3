@@ -14,7 +14,7 @@ window.SHOPS = [
   {
     id: 2,
     name: "ゆきいもゆりちゃんカフェ",
-    description: "冷やしキュウリ",
+    description: "冷やしキュウリ、かき氷",
     alcohol: "無し",
     image: "exhibitor-02.webp",
     imageFit: "contain"
