@@ -14,7 +14,7 @@ window.SHOPS = [
   {
     id: 2,
     name: "ゆきいもゆりちゃんカフェ",
-    description: "冷やしキュウリ、かき氷",
+    description: "かき氷と冷やしキュウリ",
     alcohol: "無し",
     image: "exhibitor-02.webp",
     imageFit: "contain"
@@ -34,7 +34,7 @@ window.SHOPS = [
   {
     id: 4,
     name: "YEGブース",
-    description: "ソフトドリンク、アルコール",
+    description: "未定",
     alcohol: "有り",
     image: "exhibitor-04.webp",
     imageFit: "contain"
@@ -53,7 +53,7 @@ window.SHOPS = [
   // 6番
   {
     id: 6,
-    name: "居酒屋祇園",
+    name: "祇園",
     description: "焼き鳥",
     alcohol: "有り",
     image: "exhibitor-06.webp",
