@@ -12,11 +12,11 @@
 <meta content="strict-origin-when-cross-origin" name="referrer"/>
 <meta content="default-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'" http-equiv="Content-Security-Policy"/>
 <title>YEG祭2026 会場案内</title>
- YEG祭2026 25店舗対応版
+<!-- YEG祭2026 25店舗対応版
 通常URL: 一般公開（編集機能非表示）
-管理者編集: URL末尾に ?edit=1 を付けると番号・縁日・TIMETABLEの位置とサイズを調整できます。
+管理者編集: URL末尾に ?edit=1 を付けると番号・縁日・TIMETABLE・休憩スペースの位置とサイズを調整できます。
 調整後「変更版HTMLを保存」を押し、生成されたindex.htmlをGitHubへ上書きしてください。
-
+-->
 <style>
 :root{--navy:#052b66;--navy2:#001c49;--red:#d10d17;--cream:#fff9e9;--gold:#f5b516;--line:#d7c7a5;--shadow:0 8px 25px #00163435}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI","Yu Gothic",Meiryo,sans-serif;color:#111;background:linear-gradient(180deg,#073673,#001a43);overflow-x:hidden}button{font:inherit}.shell{width:min(1120px,100%);margin:auto;padding:0 8px 24px}
@@ -169,51 +169,11 @@
 .admin-editing .rest-map:active{cursor:grabbing}
 .rest-map.ui-selected{outline:4px solid #00a7ff!important}
 @media(max-width:720px){.rest-map{padding:5px 7px;font-size:8px;border-radius:7px}}
-</style><style id="ver42-map-overlay-css">
-/* 最新会場図には番号・案内ラベルが描かれているため、
-   公開時はHTML要素を透明なクリック領域として使用します。 */
-body:not(.admin-editing) #mapWrap .rest-map{
-  opacity:0!important;
-  background:transparent!important;
-  border-color:transparent!important;
-  color:transparent!important;
-  box-shadow:none!important;
-}
-
-/* 管理編集画面では位置が分かるよう表示 */
-body.admin-editing #mapWrap .marker,
-body.admin-editing #mapWrap .ennichi-map,
-body.admin-editing #mapWrap .tt-map,
-body.admin-editing #mapWrap .rest-map{
-  opacity:.78!important;
-}
-
-body:not(.admin-editing) #mapWrap .marker{
-  opacity:1!important;
-  color:#fff!important;
-  background:#c94a18!important;
-  border:2px solid #fff!important;
-  box-shadow:0 1px 5px rgba(0,0,0,.45)!important;
-  pointer-events:auto!important;
-}
-</style><style id="ver43-ui-restore-css">
-body:not(.admin-editing) #mapWrap .ennichi-map,
-body:not(.admin-editing) #mapWrap .tt-map{
-  opacity:1!important;
-  visibility:visible!important;
-  display:flex!important;
-  pointer-events:auto!important;
-  color:#fff!important;
-  box-shadow:0 2px 8px rgba(0,0,0,.35)!important;
-}
-body:not(.admin-editing) #mapWrap .ennichi-map{
-  background:#e21a2c!important;
-  border:2px solid #fff!important;
-}
-body:not(.admin-editing) #mapWrap .tt-map{
-  background:#0878bd!important;
-  border:2px solid #fff!important;
-}
+</style><style id="ver46-admin-visibility-fix">
+/* 管理編集UIは通常公開時に完全非表示 */
+#editPanel{display:none!important}
+body.admin-editing #editPanel,
+#editPanel.open{display:block!important}
 </style></head>
 <body class="">
 <header class="hero" id="top"><h1><span>YEG</span>祭2026 会場案内</h1><p>会場マップ・出店者一覧・ステージイベントを確認できます。</p></header>
@@ -224,13 +184,13 @@ body:not(.admin-editing) #mapWrap .tt-map{
 <div><div><span class="badge">縁日</span><p>をタップで<br/>縁日コーナーの内容を表示</p></div></div>
 <div><div><span class="badge">TIMETABLE</span><p>をタップで<br/>ステージスケジュールを表示</p></div></div>
 </section>
-<section class="card"><div class="map-wrap" id="mapWrap" style="background-image:none!important;"><img alt="YEG祭2026 最新会場配置図" fetchpriority="high" height="1328" src="map_bg.png?v=42" width="1760"/><div class="map-title">YEG祭2026　会場配置図</div><button aria-label="縁日コーナーの内容を表示" class="ennichi-map" id="ennichiMap" style="left:28.1%;top:77.7%;transform:translate(-50%,-50%) rotate(0deg) scale(1.05);" type="button">縁日</button><button aria-label="ステージタイムテーブルを表示" class="tt-map" data-timetable="" id="ttMap" style="left:86.3%;top:35.3%;transform:translate(-50%,-50%) scale(1.05);" type="button">TIMETABLE</button><button aria-label="出店者1の詳細" class="marker" data-id="1" style="--x:74.8%;--y:51.9%;transform:translate(-50%,-50%) scale(1.0);" type="button">1</button><button aria-label="出店者2の詳細" class="marker" data-id="2" style="--x:69.8%;--y:56.4%;transform:translate(-50%,-50%) scale(1.0);" type="button">2</button><button aria-label="出店者3の詳細" class="marker" data-id="3" style="--x:64.7%;--y:59.1%;transform:translate(-50%,-50%) scale(1.0);" type="button">3</button><button aria-label="出店者4の詳細" class="marker" data-id="4" style="--x:59.4%;--y:61.7%;transform:translate(-50%,-50%) scale(1.0);" type="button">4</button><button aria-label="出店者5の詳細" class="marker" data-id="5" style="--x:54.5%;--y:66.5%;transform:translate(-50%,-50%) scale(1.0);" type="button">5</button><button aria-label="出店者6の詳細" class="marker" data-id="6" style="--x:49.8%;--y:72.1%;transform:translate(-50%,-50%) scale(1.0);" type="button">6</button><button aria-label="出店者7の詳細" class="marker" data-id="7" style="--x:44.8%;--y:76.9%;transform:translate(-50%,-50%) scale(1.0);" type="button">7</button><button aria-label="出店者8の詳細" class="marker" data-id="8" style="--x:41.1%;--y:82.5%;transform:translate(-50%,-50%) scale(1.0);" type="button">8</button><button aria-label="出店者9の詳細" class="marker" data-id="9" style="--x:36.3%;--y:86.6%;transform:translate(-50%,-50%) scale(1.0);" type="button">9</button><button aria-label="出店者10の詳細" class="marker" data-id="10" style="--x:32.1%;--y:84.3%;transform:translate(-50%,-50%) scale(1.0);" type="button">10</button><button aria-label="出店者11の詳細" class="marker" data-id="11" style="--x:27.9%;--y:68.2%;transform:translate(-50%,-50%) scale(1.0);" type="button">11</button><button aria-label="出店者12の詳細" class="marker" data-id="12" style="--x:29.7%;--y:59.1%;transform:translate(-50%,-50%) scale(1.0);" type="button">12</button><button aria-label="出店者13の詳細" class="marker" data-id="13" style="--x:32.9%;--y:50.4%;transform:translate(-50%,-50%) scale(1.0);" type="button">13</button><button aria-label="出店者14の詳細" class="marker" data-id="14" style="--x:36.5%;--y:43.3%;transform:translate(-50%,-50%) scale(1.0);" type="button">14</button><button aria-label="出店者15の詳細" class="marker" data-id="15" style="--x:39.5%;--y:38.9%;transform:translate(-50%,-50%) scale(1.0);" type="button">15</button><button aria-label="出店者16の詳細" class="marker" data-id="16" style="--x:43.2%;--y:31.8%;transform:translate(-50%,-50%) scale(1.0);" type="button">16</button><button aria-label="出店者17の詳細" class="marker" data-id="17" style="--x:46.5%;--y:25.5%;transform:translate(-50%,-50%) scale(1.0);" type="button">17</button><button aria-label="出店者18の詳細" class="marker" data-id="18" style="--x:49.5%;--y:19.0%;transform:translate(-50%,-50%) scale(1.0);" type="button">18</button><button aria-label="出店者19の詳細" class="marker" data-id="19" style="--x:52.9%;--y:12.8%;transform:translate(-50%,-50%) scale(1.0);" type="button">19</button><button aria-label="出店者20の詳細" class="marker" data-id="20" style="--x:57.3%;--y:10.7%;transform:translate(-50%,-50%) scale(1.0);" type="button">20</button><button aria-label="出店者21の詳細" class="marker" data-id="21" style="--x:61.5%;--y:9.2%;transform:translate(-50%,-50%) scale(1.0);" type="button">21</button><button aria-label="出店者22の詳細" class="marker" data-id="22" style="--x:65.6%;--y:9.5%;transform:translate(-50%,-50%) scale(1.0);" type="button">22</button><button aria-label="出店者23の詳細" class="marker" data-id="23" style="--x:69.7%;--y:10.1%;transform:translate(-50%,-50%) scale(1.0);" type="button">23</button><button aria-label="出店者24の詳細" class="marker" data-id="24" style="--x:73.4%;--y:13.9%;transform:translate(-50%,-50%) scale(1.0);" type="button">24</button></div></section>
+<section class="card"><div class="map-wrap" id="mapWrap"><img alt="YEG祭2026 最新会場配置図" fetchpriority="high" height="1328" src="map_bg.png?v=46" width="1760"/><div class="map-title">YEG祭2026　会場配置図</div><button aria-label="縁日コーナーの内容を表示" class="ennichi-map" id="ennichiMap" style="left:28.1%;top:77.7%;transform:translate(-50%,-50%) rotate(75deg) scale(0.98);" type="button">縁日</button><button aria-label="ステージタイムテーブルを表示" class="tt-map" data-timetable="" id="ttMap" style="left:86.3%;top:35.3%;transform:translate(-50%,-50%) scale(0.82);" type="button">TIMETABLE</button><button aria-label="出店者1の詳細" class="marker" data-id="1" style="--x:74.8%;--y:51.9%;transform:translate(-50%,-50%) scale(1.1);" type="button">1</button><button aria-label="出店者2の詳細" class="marker" data-id="2" style="--x:69.8%;--y:56.4%;transform:translate(-50%,-50%) scale(1.1);" type="button">2</button><button aria-label="出店者3の詳細" class="marker" data-id="3" style="--x:64.7%;--y:59.1%;transform:translate(-50%,-50%) scale(1.1);" type="button">3</button><button aria-label="出店者4の詳細" class="marker" data-id="4" style="--x:59.4%;--y:61.7%;transform:translate(-50%,-50%) scale(1.1);" type="button">4</button><button aria-label="出店者5の詳細" class="marker" data-id="5" style="--x:54.5%;--y:66.5%;transform:translate(-50%,-50%) scale(1.1);" type="button">5</button><button aria-label="出店者6の詳細" class="marker" data-id="6" style="--x:49.8%;--y:72.1%;transform:translate(-50%,-50%) scale(1.1);" type="button">6</button><button aria-label="出店者7の詳細" class="marker" data-id="7" style="--x:44.8%;--y:76.9%;transform:translate(-50%,-50%) scale(1.1);" type="button">7</button><button aria-label="出店者8の詳細" class="marker" data-id="8" style="--x:41.1%;--y:82.5%;transform:translate(-50%,-50%) scale(1.1);" type="button">8</button><button aria-label="出店者9の詳細" class="marker" data-id="9" style="--x:36.3%;--y:86.6%;transform:translate(-50%,-50%) scale(1.1);" type="button">9</button><button aria-label="出店者10の詳細" class="marker" data-id="10" style="--x:32.1%;--y:84.3%;transform:translate(-50%,-50%) scale(1.1);" type="button">10</button><button aria-label="出店者11の詳細" class="marker" data-id="11" style="--x:27.9%;--y:68.2%;transform:translate(-50%,-50%) scale(1.1);" type="button">11</button><button aria-label="出店者12の詳細" class="marker" data-id="12" style="--x:29.7%;--y:59.1%;transform:translate(-50%,-50%) scale(1.1);" type="button">12</button><button aria-label="出店者13の詳細" class="marker" data-id="13" style="--x:32.9%;--y:50.4%;transform:translate(-50%,-50%) scale(1.1);" type="button">13</button><button aria-label="出店者14の詳細" class="marker" data-id="14" style="--x:36.5%;--y:43.3%;transform:translate(-50%,-50%) scale(1.1);" type="button">14</button><button aria-label="出店者15の詳細" class="marker" data-id="15" style="--x:39.5%;--y:38.9%;transform:translate(-50%,-50%) scale(1.1);" type="button">15</button><button aria-label="出店者16の詳細" class="marker" data-id="16" style="--x:43.2%;--y:31.8%;transform:translate(-50%,-50%) scale(1.1);" type="button">16</button><button aria-label="出店者17の詳細" class="marker" data-id="17" style="--x:46.5%;--y:25.5%;transform:translate(-50%,-50%) scale(1.1);" type="button">17</button><button aria-label="出店者18の詳細" class="marker" data-id="18" style="--x:49.5%;--y:19.0%;transform:translate(-50%,-50%) scale(1.1);" type="button">18</button><button aria-label="出店者19の詳細" class="marker" data-id="19" style="--x:52.9%;--y:12.8%;transform:translate(-50%,-50%) scale(1.1);" type="button">19</button><button aria-label="出店者20の詳細" class="marker" data-id="20" style="--x:57.3%;--y:10.7%;transform:translate(-50%,-50%) scale(1.1);" type="button">20</button><button aria-label="出店者21の詳細" class="marker" data-id="21" style="--x:61.5%;--y:9.2%;transform:translate(-50%,-50%) scale(1.1);" type="button">21</button><button aria-label="出店者22の詳細" class="marker" data-id="22" style="--x:65.6%;--y:9.5%;transform:translate(-50%,-50%) scale(1.1);" type="button">22</button><button aria-label="出店者23の詳細" class="marker" data-id="23" style="--x:69.7%;--y:10.1%;transform:translate(-50%,-50%) scale(1.1);" type="button">23</button><button aria-label="出店者24の詳細" class="marker" data-id="24" style="--x:73.4%;--y:13.9%;transform:translate(-50%,-50%) scale(1.1);" type="button">24</button></div></section>
 <section class="columns"><section class="panel" id="exhibitors"><h2>🏪 出店者一覧</h2><div class="ex-grid" id="exGrid"><button aria-label="アイドルブースの詳細を表示" class="ex-item" data-id="1" type="button"><span class="num">1</span>アイドルブース</button><button aria-label="ゆきいもゆりちゃんカフェの詳細を表示" class="ex-item" data-id="2" type="button"><span class="num">2</span>ゆきいもゆりちゃんカフェ</button><button aria-label="個別教育Canの詳細を表示" class="ex-item" data-id="3" type="button"><span class="num">3</span>個別教育Can</button><button aria-label="YEGブースの詳細を表示" class="ex-item" data-id="4" type="button"><span class="num">4</span>YEGブース</button><button aria-label="和香の詳細を表示" class="ex-item" data-id="5" type="button"><span class="num">5</span>和香</button><button aria-label="祇園の詳細を表示" class="ex-item" data-id="6" type="button"><span class="num">6</span>祇園</button><button aria-label="T’sキッチンの詳細を表示" class="ex-item" data-id="7" type="button"><span class="num">7</span>T’sキッチン</button><button aria-label="飛騨九兵衛の詳細を表示" class="ex-item" data-id="8" type="button"><span class="num">8</span>飛騨九兵衛</button><button aria-label="カラオケ酒場 じゅん婆の詳細を表示" class="ex-item" data-id="9" type="button"><span class="num">9</span>カラオケ酒場 じゅん婆</button><button aria-label="ぱりぱりんごの詳細を表示" class="ex-item" data-id="10" type="button"><span class="num">10</span>ぱりぱりんご</button><button aria-label="Ninottiの詳細を表示" class="ex-item" data-id="11" type="button"><span class="num">11</span>Ninotti</button><button aria-label="いつめしplusの詳細を表示" class="ex-item" data-id="12" type="button"><span class="num">12</span>いつめしplus</button><button aria-label="しぇるぶーるの詳細を表示" class="ex-item" data-id="13" type="button"><span class="num">13</span>しぇるぶーる</button><button aria-label="Koke Kokioの詳細を表示" class="ex-item" data-id="14" type="button"><span class="num">14</span>Koke Kokio</button><button aria-label="SMOKOの詳細を表示" class="ex-item" data-id="15" type="button"><span class="num">15</span>SMOKO</button><button aria-label="HOUEI COFFEEの詳細を表示" class="ex-item" data-id="16" type="button"><span class="num">16</span>HOUEI COFFEE</button><button aria-label="ガキゲンキッチンカーの詳細を表示" class="ex-item" data-id="17" type="button"><span class="num">17</span>ガキゲンキッチンカー</button><button aria-label="まんまるキッチンの詳細を表示" class="ex-item" data-id="18" type="button"><span class="num">18</span>まんまるキッチン</button><button aria-label="くまさんのカステラの詳細を表示" class="ex-item" data-id="19" type="button"><span class="num">19</span>くまさんのカステラ</button><button aria-label="ゴールドキッチンの詳細を表示" class="ex-item" data-id="20" type="button"><span class="num">20</span>ゴールドキッチン</button><button aria-label="crepe shop sunny'sの詳細を表示" class="ex-item" data-id="21" type="button"><span class="num">21</span>crepe shop sunny's</button><button aria-label="旅するKitchen car岳の詳細を表示" class="ex-item" data-id="22" type="button"><span class="num">22</span>旅するKitchen car岳</button><button aria-label="uis_kitchenの詳細を表示" class="ex-item" data-id="23" type="button"><span class="num">23</span>uis_kitchen</button><button aria-label="植物の詳細を表示" class="ex-item" data-id="24" type="button"><span class="num">24</span>植物</button></div><button class="primary" id="showAll" type="button">すべての出店者を一覧で見る　›</button></section><section class="panel"><h2 class="red">🎤 ステージイベント タイムテーブル</h2><table><tbody id="ttBody"><tr><td>15:20</td><td>ステージイベント開始</td><td>YEG紹介</td></tr><tr><td>15:30</td><td>ダンスショーケース</td><td>ぜひ、ステージ前までお越しください。</td></tr><tr><td>17:10</td><td>宗和會演武・踊り披露</td><td>ぜひ、ステージ前までお越しください。</td></tr><tr><td>18:00</td><td>エクストリームビンゴ大会</td><td>配布しておりますビンゴカードをお持ちください。</td></tr><tr><td>20:00</td><td>閉会</td><td></td></tr></tbody></table><br/><button class="primary red" data-timetable="" type="button">TIMETABLE を表示する　›</button></section></section>
 </main>
 <footer class="footer">© YEG祭2026 実行委員会</footer><a aria-label="ページ上部へ" class="to-top" href="#top">⌃</a>
 <div aria-label="番号位置編集パネル" class="edit-panel" id="editPanel">
 <h3>番号位置調整（管理者用）</h3>
-<p>画像内の番号・案内表示に重ねたクリック領域をドラッグできます。公開画面では重複防止のため透明表示になります。</p>
+<p>①〜㉕・「縁日」・「TIMETABLE」をドラッグできます。番号・縁日・TIMETABLEをクリックまたはタップして選択すると、下の「小さく」「大きく」で文字を含むボタン全体のサイズを調整できます。</p>
 <div class="edit-actions"><button class="edit-size" id="sizeDown" type="button">選択中を小さく</button><button class="edit-size" id="sizeUp" type="button">選択中を大きく</button><button class="edit-save" id="downloadEdited" type="button">変更版HTMLを保存</button><button class="edit-reset" id="resetPositions" type="button">初期位置へ戻す</button><button class="edit-close" id="closeEditor" type="button">編集を終了</button><button class="edit-rotate" id="rotateLeftBtn" type="button">↶ 左へ回転</button><button class="edit-rotate" id="rotateRightBtn" type="button">↷ 右へ回転</button><button class="edit-rotate" id="rotateResetBtn" type="button">回転リセット</button><button class="edit-save" id="openShopEditor" type="button">出店者情報を編集</button></div>
 <div class="edit-coords" id="editCoords">1: 62.98%, 52.69% / サイズ 110%
 2: 59.70%, 54.74% / サイズ 110%
@@ -268,7 +228,7 @@ TIMETABLE: 70.64%, 44.83% / サイズ 82%
 <div aria-label="縁日コーナー" aria-modal="true" class="overlay" id="ennichiModal" role="dialog">
 <div class="dialog ennichi-dialog ennichi-image-dialog">
 <button class="close" type="button">×</button>
-<img alt="縁日コーナー　輪投げ、射的、スーパーボールすくい、メダカすくい、風船釣り" class="ennichi-visual" loading="lazy" src="ennichi-corner.webp?v=42-light"/>
+<img alt="縁日コーナー　輪投げ、射的、スーパーボールすくい、メダカすくい、風船釣り" class="ennichi-visual" loading="lazy" src="ennichi-corner.webp?v=46"/>
 </div>
 </div>
 <!-- ===== 編集② 縁日コーナー ここまで ===== -->
@@ -332,7 +292,7 @@ TIMETABLE: 70.64%, 44.83% / サイズ 82%
 </div>
 <div aria-live="polite" class="shop-status" id="shopEditStatus"></div>
 </div>
-</div><script id="marker-data" type="application/json">{"1":[74.8,51.9],"2":[69.8,56.4],"3":[64.7,59.1],"4":[59.4,61.7],"5":[54.5,66.5],"6":[49.8,72.1],"7":[44.8,76.9],"8":[41.1,82.5],"9":[36.3,86.6],"10":[32.1,84.3],"11":[27.9,68.2],"12":[29.7,59.1],"13":[32.9,50.4],"14":[36.5,43.3],"15":[39.5,38.9],"16":[43.2,31.8],"17":[46.5,25.5],"18":[49.5,19.0],"19":[52.9,12.8],"20":[57.3,10.7],"21":[61.5,9.2],"22":[65.6,9.5],"23":[69.7,10.1],"24":[73.4,13.9]}</script><script id="marker-size-data" type="application/json">{"1":1.0,"2":1.0,"3":1.0,"4":1.0,"5":1.0,"6":1.0,"7":1.0,"8":1.0,"9":1.0,"10":1.0,"11":1.0,"12":1.0,"13":1.0,"14":1.0,"15":1.0,"16":1.0,"17":1.0,"18":1.0,"19":1.0,"20":1.0,"21":1.0,"22":1.0,"23":1.0,"24":1.0}</script><script id="ui-data" type="application/json">{"ennichi":{"x":28.1,"y":77.7,"scale":1.05,"rot":0},"timetable":{"x":86.3,"y":35.3,"scale":1.05}}</script>
+</div><script id="marker-data" type="application/json">{"1":[74.8,51.9],"2":[69.8,56.4],"3":[64.7,59.1],"4":[59.4,61.7],"5":[54.5,66.5],"6":[49.8,72.1],"7":[44.8,76.9],"8":[41.1,82.5],"9":[36.3,86.6],"10":[32.1,84.3],"11":[27.9,68.2],"12":[29.7,59.1],"13":[32.9,50.4],"14":[36.5,43.3],"15":[39.5,38.9],"16":[43.2,31.8],"17":[46.5,25.5],"18":[49.5,19.0],"19":[52.9,12.8],"20":[57.3,10.7],"21":[61.5,9.2],"22":[65.6,9.5],"23":[69.7,10.1],"24":[73.4,13.9]}</script><script id="marker-size-data" type="application/json">{"1":1.1,"2":1.1,"3":1.1,"4":1.1,"5":1.1,"6":1.1,"7":1.1,"8":1.1,"9":1.1,"10":1.1,"11":1.1,"12":1.1,"13":1.1,"14":1.1,"15":1.1,"16":1.1,"17":1.1,"18":1.1,"19":1.1,"20":1.1,"21":1.1,"22":1.1,"23":1.1,"24":1.1}</script><script id="ui-data" type="application/json">{"ennichi":{"x":28.1,"y":77.7,"scale":0.98,"rot":75},"timetable":{"x":86.3,"y":35.3,"scale":0.82}}</script>
 <!-- =========================================================
 編集① 出店者一覧・写真
 この直後の exhibitor-data 内だけを編集します。
@@ -502,8 +462,8 @@ ready(function(){
     const out=$('#editCoords'); if(!out)return;
     const markerText=Object.keys(positions).sort((a,b)=>+a-+b).map(id=>`${id}: ${positions[id][0].toFixed(2)}%, ${positions[id][1].toFixed(2)}% / サイズ ${Math.round((markerSizes[id]||1)*100)}%`).join('\n');
     const e=currentUi.ennichi,t=currentUi.timetable,r=currentUi.rest;
-    const selectedLabel=selectedMarkerId?`番号 ${selectedMarkerId}`:(selectedUiKey?(selectedUiKey==='ennichi'?'縁日':(selectedUiKey==='timetable'?'TIMETABLE':'')):'なし');
-    out.textContent=markerText+`\n縁日: ${e.x.toFixed(2)}%, ${e.y.toFixed(2)}% / サイズ ${Math.round(e.scale*100)}% / 回転 ${Math.round(e.rot||0)}°`+`\nTIMETABLE: ${t.x.toFixed(2)}%, ${t.y.toFixed(2)}% / サイズ ${Math.round(t.scale*100)}%`+`\n: ${r.x.toFixed(2)}%, ${r.y.toFixed(2)}% / サイズ ${Math.round(r.scale*100)}%`+`\n選択中: ${selectedLabel}`;
+    const selectedLabel=selectedMarkerId?`番号 ${selectedMarkerId}`:(selectedUiKey?(selectedUiKey==='ennichi'?'縁日':(selectedUiKey==='timetable'?'TIMETABLE':'休憩スペース')):'なし');
+    out.textContent=markerText+`\n縁日: ${e.x.toFixed(2)}%, ${e.y.toFixed(2)}% / サイズ ${Math.round(e.scale*100)}% / 回転 ${Math.round(e.rot||0)}°`+`\nTIMETABLE: ${t.x.toFixed(2)}%, ${t.y.toFixed(2)}% / サイズ ${Math.round(t.scale*100)}%`+`\n休憩スペース: ${r.x.toFixed(2)}%, ${r.y.toFixed(2)}% / サイズ ${Math.round(r.scale*100)}%`+`\n選択中: ${selectedLabel}`;
   }
   function enableDrag(el,onMove,onSelect){
     if(!el)return;
